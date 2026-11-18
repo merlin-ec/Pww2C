@@ -1,8 +1,10 @@
 # Prestige World Wide
 
+**Last updated:** 18 Nov 2026
+
 One place where your film and TV taste, tracking, deciding, sharing and streaming services live together.
 
-**Status:** Foundations built (accounts, search, title pages, database, CI). Next: ratings and reviews.
+**Status:** Foundations built (accounts, search, title pages, database, CI) but out of date. Next: an update pass on the code and docs, then ratings and reviews. Live status is in `TOM.md`.
 
 ## Stack
 
@@ -46,6 +48,9 @@ docs/               decisions, setup, database workflow, how each feature works
 
 ## Read next
 
+- `TOM.md`: where things stand, in plain English (start here)
+- `CLAUDE.md`: the rules every agent follows, including keeping these docs current
+- `docs/README.md`: map of every doc
 - `docs/decisions.md`: why things are the way they are
 - `docs/how-it-works/`: plain-English explanation of each feature
 - `docs/database.md`: the migration workflow and who can access what

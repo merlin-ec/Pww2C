@@ -64,14 +64,10 @@ A recurring "docs gardener" agent can also compare the docs with the code and op
 
 ## Decisions
 
-Add a short entry to `decisions.md` whenever you choose between real alternatives:
+Add one line to `decisions.md`, under the right section, whenever you choose between real alternatives:
 
 ```markdown
-### <Decision title> (<date>)
-**Context:** what problem forced a choice
-**Decision:** what we chose
-**Alternatives:** what we didn't choose, and why
-**Consequences:** what this makes easier or harder
+- **<What we decided.>** Why, in a sentence, and what we didn't choose.
 ```
 
 Never rewrite an old decision. Add a new one that supersedes it, and changing a locked decision needs Tom (see `CLAUDE.md` → *Stop and ask*).

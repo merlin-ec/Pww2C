@@ -34,35 +34,36 @@ One entry per session, **newest first**. Agents write here at the end of every s
 
 ---
 
-## 2026-11-18: Living docs rule
-**Agent/session:** claude.ai (PWW 2 project)  ·  **Branch/PR:** `docs/starter-pack` / see GitHub  ·  **Spec:** n/a
+## 2026-11-18: Code and docs on GitHub, living docs rule
+**Agent/session:** claude.ai (PWW 2 project)  ·  **Branch/PR:** `chore/foundations-baseline` / #2 (merged), `docs/starter-pack` / #1  ·  **Spec:** n/a
 
 **Done**
-- Tom's rule, written into `CLAUDE.md` (*Keep the docs current*), `docs/workflow.md` (*Keeping the docs current*) and the PR template: docs change in the same PR as the code, wrong docs get fixed when found, every session ends with status/handoff/TOM/CHANGELOG.
-- Added CI enforcement: `.github/workflows/docs-check.yml` runs `scripts/docs-check.sh`. Tested locally against 8 cases (code-only, migrations, env, scripts vs deps, docs-only, escape hatch, template placeholder rejected).
-- Added a `**Last updated:**` line to every doc; removed the duplicate *Updated* field from the spec headers.
-- Put the 17 Nov docs starter pack on GitHub in this PR.
+- PR #2: the 3 Nov Foundations code committed as-is from `pww-foundations.zip` (only `supabase/.temp/` left out and git-ignored). Migration files match the 3 Nov checksums. First CI run green. Squash-merged.
+- PR #1: the 17 Nov docs pack, rebased onto the baseline. Tom's living docs rule is in `CLAUDE.md` (*Keep the docs current*), `docs/workflow.md` and the PR template, enforced by `.github/workflows/docs-check.yml` → `scripts/docs-check.sh` (tested against 8 cases). Every doc has a *Last updated* line.
+- Merged the two rulebooks. `CLAUDE.md` is the only rulebook now: it imports `@AGENTS.md` and absorbed the rules from the code's `AGENTS.md`. `AGENTS.md` keeps only the `next dev`-managed block and a pointer. `next dev` only upserts its marked block in `AGENTS.md` and never touches `CLAUDE.md` (checked in `generate-agent-files.js`).
+- Checked the docs against the code. Fixed `src/lib/supabase/types.ts` → `database.types.ts` (workflow, conventions). Added the real commands, `test:db` setup, the `src/lib/env*.ts` and `supabase/templates` paths, and the CI contents to `CLAUDE.md`.
+- Ran every check and wrote the update list: `docs/status.md` → *Update pass*, and `TOM.md` → *Update list*.
 
 **Changed files / migrations**
-- Docs, PR template, CI workflow, `scripts/docs-check.sh`. No app code or schema changes.
+- Docs, PR template, CI docs check, `AGENTS.md`, `README.md` (status line, links, *Last updated*). No app code or schema changes.
 
-**Decisions made** (add to `docs/decisions.md` once Foundations, which owns that file, is on `main`)
-- *Living docs* (Tom, 17 Nov): docs are part of done, enforced by CI.
-- *Source of truth* (Tom, 17 Nov): the 17 Nov docs are the main reference; the 3 Nov code and working docs are the baseline. Code wins on facts about the code, docs win on rules and process, product/design conflicts go to Tom.
+**Decisions made** (in `decisions.md` → *How we work*)
+- Living docs; which source wins; one rulebook (`CLAUDE.md`); the decision log stays one line per decision, and the `workflow.md` template was changed to match.
 
 **Not done / skipped, and why**
-- Foundations code not pushed: `pww-foundations.zip` isn't on Tom's laptop yet. Plan: push it to `main` as the baseline as soon as it is.
-- `CLAUDE.md` → *Commands* / *Where things live* still not checked against the real code (needs the code).
-- "Docs gardener" scheduled agent described in `workflow.md` but not switched on; it needs the code on GitHub and Tom's OK.
+- Update-pass items not started. Tom first needs to say what changed (`open-questions.md` #9).
+- Live schema not checked: Supabase is paused.
+- Docs gardener not switched on (needs Tom's OK).
 
 **Risks or things that look wrong**
-- Tom says both the code and these docs are out of date (`open-questions.md` #9). Treat the docs as a baseline until the update pass.
+- `test:db` ran on Postgres 16 locally (17 in CI). Both passed.
+- Tom says the code and docs are out of date. Treat the specs (all *Draft*) as a starting point.
 
 **Tom should check**
-- `TOM.md` → *Needs you* #1 and #2.
+- `TOM.md` → *Needs you* #1 and *Update list*.
 
 **Next step**
-- Push Foundations to `main`, merge this PR, then the update pass: install, run checks, list outdated packages, compare docs with code, and write the update list into `TOM.md`.
+- Update pass item 1 (patch updates) as its own PR, then item 2. Put Tom's changes first when they arrive.
 
 ---
 

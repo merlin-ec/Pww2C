@@ -1,5 +1,7 @@
 # Decision log
 
+**Last updated:** 18 Nov 2026
+
 One line per decision, newest at the bottom of each section. If you change one, add a line saying what replaced it and why; don't delete history.
 
 ## Agreed with Tom before building (3 Nov 2026)
@@ -32,3 +34,10 @@ One line per decision, newest at the bottom of each section. If you change one, 
 - **Dark theme only.** A theatre lobby is dark; one theme is half the work to keep accessible.
 - **Plain Tailwind components, no component library yet.** Add one only when a complex widget (dialog, menu) needs it.
 - **No Content-Security-Policy header yet.** Nonce-based CSP conflicts with static shells; revisit in the polish milestone. Clickjacking is blocked with `X-Frame-Options`.
+
+## How we work (17–18 Nov 2026)
+
+- **Docs are always kept current (Tom, 17 Nov).** PWW keeps changing, so a change isn't done until its docs match. The same PR updates the matching doc, wrong docs get fixed when found, every session ends with status, handoff, `TOM.md` and changelog updates, and CI (`scripts/docs-check.sh`) enforces it. Asking alone wasn't enough on PWW 1.
+- **Which source wins (Tom, 17 Nov).** The 17 Nov docs are the main reference for rules and process; the 3 Nov code and docs are the baseline, and Tom says both are out of date. When docs and code disagree, the code wins on facts about the code, the docs win on rules, and product or design conflicts go to Tom.
+- **One rulebook: `CLAUDE.md`.** `AGENTS.md` keeps only the Next.js block that `next dev` rewrites, plus a pointer to `CLAUDE.md`, so the rules can't drift apart in two files.
+- **This log stays one line per decision** (decision in bold, then why and what we didn't choose). The longer template in the starter pack's `workflow.md` was changed to match.

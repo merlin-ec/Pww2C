@@ -8,7 +8,7 @@
 
 ## In one line
 
-Claude can now reach GitHub, and the docs are saved there with the new "always keep the docs current" rules. The Foundations code is next: it's built but out of date, and it still only exists in the 3 Nov chat's zip.
+The app code and all the docs are now saved on GitHub, under the new "always keep the docs current" rules. The code still builds and passes every test. Next is the update pass: the list below, plus whatever you tell us has changed.
 
 ## Needs you
 
@@ -16,27 +16,26 @@ Most important first. Agents add to this list and never remove an item until it'
 
 | # | What | Why it matters | How |
 |---|---|---|---|
-| 1 | **Download `pww-foundations.zip`** | It's the only copy of the app code. Once it's in your Downloads, Claude puts it on GitHub and starts the update pass. | Open the 3 Nov chat *PWW v1 build decisions*, scroll near the end, click the file card captioned "The Foundations code so far…". |
-| 2 | **Say what's out of date** | You said the code and the docs are both behind. Agents can find technical gaps, but only you know what changed in your thinking. | Features, stack, design or decisions you've changed. Tell Claude, or add it to `docs/open-questions.md` #9. |
-| 3 | **Wake the database** | The free Supabase project paused itself after a week without traffic, so nothing can read or write to it. This will keep happening until the app is live or on the paid plan. | Supabase dashboard → project `pww` → Restore. It's free and takes a few minutes. Or ask Claude to restore it. |
-| 4 | **Get a TMDB token** | The app can't load any films without it. | themoviedb.org → Settings → API → copy the long *API Read Access Token*. Put it straight into Vercel, never into a chat. |
-| 5 | **Set up Vercel** | This is what puts the site online. | Steps are in `docs/setup.md` (once the repo is up). |
+| 1 | **Say what's out of date** | You said the code and the docs are both behind. The checks below find technical gaps, but only you know what changed in your thinking. | Features, stack, design or decisions you've changed. Tell Claude, or add it to `docs/open-questions.md` #9. |
+| 2 | **Wake the database** | The free Supabase project paused itself after a week without traffic, so nothing can read or write to it. This will keep happening until the app is live or on the paid plan. | Supabase dashboard → project `pww` → Restore. It's free and takes a few minutes. Or ask Claude to restore it. |
+| 3 | **Get a TMDB token** | The app can't load any films without it. | themoviedb.org → Settings → API → copy the long *API Read Access Token*. Put it straight into Vercel, never into a chat. |
+| 4 | **Set up Vercel** | This is what puts the site online. | Steps are in `docs/setup.md`. |
 
 ## Decisions waiting on you
 
 These are copied from `docs/open-questions.md`, and only the ones that are blocking work appear here.
 
-- **What's out of date?** You said the code and docs are both behind. This shapes the update pass (see *Needs you* #2).
+- **What's out of date?** You said the code and docs are both behind. This shapes the update pass (see *Needs you* #1).
 - Coming up later: **whether PWW will ever make money**, because that changes which TMDB and Vercel terms apply. It's needed before launch (phase 7).
 
 ## What happened recently
 
 Newest first. Each session gets a few lines here, and the full detail goes in `docs/handoff.md`.
 
-**18 Nov 2026: Docs always kept current**
-- New rule from you: every change updates its doc at the same time, and a doc found to be wrong gets fixed straight away. Every doc now shows when it was last updated.
-- GitHub now checks this automatically and blocks changes that skip the doc update.
-- You gave Claude GitHub access, so the docs are saved on GitHub as a pull request. The app code isn't there yet (see *Needs you* #1).
+**18 Nov 2026: Code and docs on GitHub, docs always kept current**
+- Your new rule is in place. Every change updates its docs at the same time, GitHub checks this automatically and blocks changes that skip it, and every doc shows when it was last updated.
+- The app code and all the docs are saved on GitHub. The code and the docs each had their own rulebook for agents; they're now merged into one.
+- Checked the code: it still builds and passes all 36 tests and the security checks. A few packages are slightly behind, and some developer-only tools have known security issues that never reach users. Details are in *Update list* below.
 - Nothing in the app changed.
 
 **17 Nov 2026: Docs starter pack**
@@ -70,7 +69,7 @@ The full breakdown is in `docs/costs.md`. An agent must stop and ask you before 
 
 | Phase | Status |
 |---|---|
-| 0. Foundations | ✅ Built and tested, but out of date · ⏳ waiting on the code zip, then an update pass, then Vercel |
+| 0. Foundations | ✅ Built, tested and on GitHub, but out of date · ⏳ update pass, then Vercel |
 | 1. Ratings & reviews | Not started |
 | 2. Lists & watchlist | Not started |
 | 3. Onboarding & recommendations | Not started |
@@ -79,11 +78,20 @@ The full breakdown is in `docs/costs.md`. An agent must stop and ask you before 
 | 6. Social | Not started |
 | 7. Polish & launch | Not started |
 
+## Update list
+
+What the 18 Nov check found. Agents work through this from the top; the technical detail is in `docs/status.md` → *Update pass*.
+
+1. **Small package updates.** Next.js, React, Supabase and Tailwind each have a minor fix out. Low risk, one PR.
+2. **Developer-tool security issues.** 17 known issues in the tools used to lint and test the code. They never reach users, but they should be cleaned up. Part of this is a one-command fix; the rest waits on the tool makers.
+3. **Two big upgrades to decide on later:** TypeScript 7 and ESLint 10. Both are major versions, so they wait until Next.js supports them.
+4. **The database check is still waiting on the database being woken** (*Needs you* #2). Once it's awake, agents confirm the live database matches the code and rerun Supabase's security checker.
+5. **Your changes** (*Needs you* #1). These go to the top of the list once you've said what they are.
+
 ## Red flags
 
 Anything an agent thinks you should worry about. If this section is empty, nothing is worrying.
 
-- Foundations code still has no copy on GitHub. The only copy is the zip in the 3 Nov chat (see *Needs you* #1).
 - You've said the code and the docs are both out of date. Until the update pass is done, treat the docs as a starting point, not the final word.
 
 ---
