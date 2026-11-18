@@ -10,12 +10,4 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## PWW project rules
 
-Read `docs/decisions.md` before changing how anything works, and add a line there for any non-obvious decision.
-
-- **Schema changes only through new files in `supabase/migrations/`.** Never edit an applied migration and never change the schema in the Supabase dashboard. Follow `docs/database.md` (apply, rename to production's version, checksum, regenerate types, run the security advisor).
-- **Every new table gets row-level security, explicit grants, and tests in `tests/db/`.**
-- **Secrets stay on the server.** Anything reading `SUPABASE_SECRET_KEY` or `TMDB_READ_TOKEN` imports `server-only`. Use the admin client only where no user should be able to act directly.
-- **Check the user in every Server Action and Route Handler** with `src/lib/auth/dal.ts`, never by trusting form data.
-- **Taste data is structured** (ids and fixed options), never free text to parse later. Every rate, dismiss and save on a suggestion is logged.
-- **Run `npm run check` and `npm run test:db` before pushing.**
-- **Leave a short comment explaining why** for anything non-obvious. The owner must be able to read and explain the code.
+**All PWW rules are in `CLAUDE.md`. Read it before doing anything.** It is the single rulebook for every agent and tool (Claude, Codex, Cursor and others). This file only holds the Next.js block above, which `next dev` maintains automatically.
