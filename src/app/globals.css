@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+/*
+ * PWW design tokens: a theatre lobby after dark.
+ * Velvet and curtain for surfaces, ivory for text, brass for the one thing
+ * you should press, and a backlit marquee for the one thing you should read.
+ */
+@theme {
+  --color-velvet: #1b0e11;
+  --color-curtain: #261418;
+  --color-plush: #351c21;
+  --color-seam: #4a2a30;
+  --color-ivory: #f3e7d3;
+  --color-program: #bfa88c;
+  --color-brass: #cfa45a;
+  --color-brass-bright: #e6c27e;
+  --color-marquee: #fff4da;
+  --color-marquee-ink: #1b0e11;
+  --color-exit: #e5534b;
+  --color-go: #8fc98f;
+
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-big-shoulders), "Arial Narrow", ui-sans-serif, sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    background-color: var(--color-velvet);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-velvet);
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-brass);
+    color: var(--color-velvet);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* The marquee: a backlit letterboard with a row of bulbs above and below.
+     Used once per page, for the thing the page is about. */
+  .marquee {
+    position: relative;
+    background-color: var(--color-marquee);
+    color: var(--color-marquee-ink);
+    padding: 1.4rem 1.5rem;
+    border-radius: 6px;
+    box-shadow:
+      0 0 0 1px rgb(207 164 90 / 0.6),
+      0 0 48px rgb(255 214 140 / 0.18);
+  }
+
+  .marquee::before,
+  .marquee::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    height: 6px;
+    background-image: radial-gradient(circle, #ffd98a 0 2.2px, transparent 2.6px);
+    background-size: 16px 6px;
+    background-repeat: repeat-x;
+  }
+
+  .marquee::before {
+    top: 5px;
+  }
+
+  .marquee::after {
+    bottom: 5px;
+  }
+
+  .marquee-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+  }
+
+  .button-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    background-color: var(--color-brass);
+    color: var(--color-velvet);
+    font-weight: 600;
+    transition: background-color 120ms ease;
+  }
+
+  .button-primary:hover {
+    background-color: var(--color-brass-bright);
+  }
+
+  .button-primary:disabled {
+    opacity: 0.6;
+    cursor: progress;
+  }
+
+  .button-quiet {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    border: 1px solid var(--color-seam);
+    color: var(--color-ivory);
+    font-weight: 500;
+    transition: border-color 120ms ease;
+  }
+
+  .button-quiet:hover {
+    border-color: var(--color-program);
+  }
+
+  .button-danger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    border: 1px solid var(--color-exit);
+    color: var(--color-exit);
+    font-weight: 600;
+  }
+
+  .button-danger:hover {
+    background-color: rgb(229 83 75 / 0.12);
+  }
+
+  .text-input {
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.55rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid var(--color-seam);
+    background-color: var(--color-plush);
+    color: var(--color-ivory);
+  }
+
+  .text-input::placeholder {
+    color: rgb(191 168 140 / 0.7);
+  }
+
+  .text-input:focus-visible {
+    outline-offset: 1px;
+  }
+
+  .text-input[aria-invalid="true"] {
+    border-color: var(--color-exit);
+  }
+
+  .link {
+    color: var(--color-brass);
+    text-decoration: underline;
+    text-decoration-color: rgb(207 164 90 / 0.4);
+    text-underline-offset: 3px;
+  }
+
+  .link:hover {
+    text-decoration-color: var(--color-brass);
+  }
+
+  .skeleton {
+    background-color: var(--color-curtain);
+    border-radius: 6px;
+  }
+}
