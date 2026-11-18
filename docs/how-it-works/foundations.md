@@ -1,5 +1,7 @@
 # How Foundations works
 
+**Last updated:** 3 Nov 2026
+
 Foundations is everything the six features stand on: accounts, the film catalogue, title pages, and the safety rails.
 
 ## A page request, start to finish

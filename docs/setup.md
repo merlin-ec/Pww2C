@@ -1,5 +1,7 @@
 # Setting up accounts and settings
 
+**Last updated:** 3 Nov 2026
+
 The things only the owner can do, in order. Never paste secret keys into a chat, a commit or an issue: they go straight into the settings pages below.
 
 ## 1. GitHub

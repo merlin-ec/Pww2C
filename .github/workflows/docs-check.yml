@@ -1,0 +1,24 @@
+name: Docs check
+
+# Fails a PR when code changes aren't matched by doc changes.
+# Rules: CLAUDE.md -> "Keep the docs current". Logic: scripts/docs-check.sh.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  contents: read
+
+jobs:
+  docs-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Docs match the change
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: bash scripts/docs-check.sh

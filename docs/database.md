@@ -1,5 +1,7 @@
 # Working with the database
 
+**Last updated:** 3 Nov 2026
+
 Production database: Supabase project `pww` (ref `qlisfitmvovfzkljmsfm`, region us-east-1, Postgres 17).
 
 ## The one rule
