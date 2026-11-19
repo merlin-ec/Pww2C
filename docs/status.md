@@ -10,7 +10,17 @@ Claim a row **before** you start. Remove it when the PR merges or you hand off. 
 
 | Task | Spec | Branch | Files / areas touched | Claimed | By |
 |---|---|---|---|---|---|
-| Prototype → specs | n/a | `docs/prototype-reference` | `docs/specs/01`–`06`, `docs/product.md`, `docs/design.md`, `docs/decisions.md`, `docs/open-questions.md`, `TOM.md` | 18 Nov 2026 | Claude (claude.ai, PWW 2 project) |
+| Prototype → specs, agent kit | n/a | `chore/agent-kit` | `docs/specs/01`–`06`, `docs/product.md`, `docs/design.md`, `docs/decisions.md`, `docs/open-questions.md`, `TOM.md`, `.claude/`, `CLAUDE.md`, `docs/workflow.md` | 18 Nov 2026 | Claude (claude.ai, PWW 2 project) |
+
+## Next up
+
+Tasks ready to build, in order. `/plan-phase` writes them; `/start next` takes the top unclaimed row. Remove a row when its PR merges.
+
+| # | Task | Spec criteria | Files / areas | Depends on | Parallel-safe |
+|---|---|---|---|---|---|
+| 1 | Update pass item 1: patch updates (see *Update pass*) | n/a | `package.json`, `package-lock.json` | none | No (touches `package.json`) |
+| 2 | Update pass item 2: `npm audit fix` for dev tools (no `--force`) | n/a | `package-lock.json` | 1 | No |
+| 3 | Fill `design.md` → *Tokens* from `src/app/globals.css` | n/a | `docs/design.md` | none | Yes |
 
 ## Blocked
 

@@ -2,7 +2,7 @@
 
 **For Tom.** This is the one page to read. Agents rewrite it at the end of every session, in plain English. The technical detail lives in `docs/`.
 
-**Last updated:** 18 Nov 2026, by Claude (prototype session)
+**Last updated:** 18 Nov 2026, by Claude (agent kit session)
 
 ---
 
@@ -10,12 +10,23 @@
 
 Your ChatGPT prototype is now the product reference: its features are written into every phase plan, its look isn't. Your laptop is connected, so you can run agents on it from your phone. Next: pick a design direction, then the update pass and the first live version.
 
+## Start building from your phone
+
+Claude app → **Code** → pick **Pww2C** (runs in the cloud) or **PWW (laptop)**. Then type one of:
+
+- **`/start next`**: the agent takes the next task on the list, builds it, gets it reviewed and opens a pull request.
+- **`/start` + what you want**, in plain words.
+- **`/plan-phase 1`**: splits phase 1 into small tasks before agents build it.
+
+You review and merge each pull request in the GitHub app. Agents can't push to the live code (`main`) themselves.
+
 ## Needs you
 
 Most important first. Agents add to this list and never remove an item until it's done.
 
 | # | What | Why it matters | How |
 |---|---|---|---|
+| 0 | **Finish the agent setup** | Three one-time steps so cloud agents can build and can't skip review. | 1. Merge PR #4 in the GitHub app. 2. claude.ai/code → environment settings → setup script `npm ci`. 3. GitHub → Pww2C → Settings → Branches → add a rule for `main`: require a pull request and passing checks. |
 | 1 | **Pick a design direction** | You don't like the prototype's look. Every new screen needs a direction. Until you choose, agents keep the current dark "theatre lobby" look. | Tell Claude: keep theatre lobby, or describe or show a look you like (`open-questions.md` #10). |
 | 2 | **Skim the phase plans** | They're now filled in from your prototype. Anything that's wrong is cheapest to fix now. | `docs/specs/01`–`06`; items marked *(prototype)*. Say if any prototype extras should wait (#11). |
 | 3 | **Wake the database** | The free Supabase project paused itself after a week without traffic, so nothing can read or write to it. This will keep happening until the app is live or on the paid plan. | Supabase dashboard → project `pww` → Restore. It's free and takes a few minutes. Or ask Claude to restore it. |
@@ -33,6 +44,11 @@ These are copied from `docs/open-questions.md`, and only the ones that are block
 ## What happened recently
 
 Newest first. Each session gets a few lines here, and the full detail goes in `docs/handoff.md`.
+
+**18 Nov 2026 (evening): Agents ready to build**
+- Added the agent kit: type `/start next` from your phone and an agent picks the next task, builds it, has a second agent review it, updates the docs and opens a pull request.
+- Agents can run checks, commit and open pull requests without asking you each time. Installs and merges always ask, and pushing to the live code is blocked.
+- The first three tasks are queued: two package-update tasks, then filling in the design doc.
 
 **18 Nov 2026 (evening): Prototype written into the plans**
 - Your laptop is connected: you can start Claude sessions on it from the Claude app's Code tab.

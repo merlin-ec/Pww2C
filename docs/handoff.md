@@ -34,6 +34,36 @@ One entry per session, **newest first**. Agents write here at the end of every s
 
 ---
 
+## 2026-11-18: Agent kit
+**Agent/session:** claude.ai (PWW 2 project)  ·  **Branch/PR:** `chore/agent-kit` (includes `docs/prototype-reference`) / see GitHub  ·  **Spec:** n/a
+
+**Done**
+- `.claude/settings.json`: allow routine commands (npm scripts, git read/commit/branch push, `gh pr create/view/checks`); ask for `npm install`, rebase, reset, merge, `gh pr merge`, Supabase CLI; deny pushes to `main`, force-push, `git reset --hard`, `rm -rf`, reading `.env` files. Syntax checked against the Claude Code permissions docs (deny → ask → allow; `*` after the subcommand).
+- `.claude/agents/reviewer.md` (read-only, runs before every PR) and `db-migrator.md` (all schema changes; stops before production if Supabase isn't reachable).
+- `.claude/skills/start`, `finish`, `plan-phase`.
+- `docs/status.md` → new *Next up* table with the first three tasks. `CLAUDE.md`, `workflow.md` (*Running agents*), `decisions.md` and `TOM.md` (*Start building from your phone*) updated.
+- This PR also carries the prototype → specs work, so Tom merges once.
+
+**Changed files / migrations**
+- `.claude/**`, docs. No app code or schema changes.
+
+**Not done / skipped, and why**
+- Cloud environment setup script and branch protection on `main` are Tom's (claude.ai and GitHub settings). Listed as *Needs you* #0.
+- Docs gardener scheduled task still not switched on (needs Tom's OK).
+
+**Risks or things that look wrong**
+- Permission rules aren't a security boundary (per the docs). The real guard is branch protection, which isn't on yet.
+- Cloud sessions may not have `gh`; `/finish` falls back to the session's *Create PR* button.
+- `npm run test:db` needs Postgres, which cloud sessions may not have. CI runs it on every PR anyway.
+
+**Tom should check**
+- `TOM.md` → *Needs you* #0.
+
+**Next step**
+- Tom: `/start next` from the Code tab, which takes *Next up* #1 (patch updates).
+
+---
+
 ## 2026-11-18: Prototype written into the specs
 **Agent/session:** claude.ai (PWW 2 project)  ·  **Branch/PR:** `docs/prototype-reference` / see GitHub  ·  **Spec:** 01–06
 

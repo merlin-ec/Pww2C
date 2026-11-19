@@ -12,6 +12,30 @@ How work moves from idea to production, especially when several agents work in p
 - Branch from the latest `main`. Rebase on `main` before opening the PR.
 - Never commit straight to `main`, force-push a shared branch, or rewrite history others have pulled.
 
+## Running agents
+
+Tom starts agents from the **Claude app → Code** tab on his phone (or claude.ai/code). There are two places they can run:
+
+| Where | Pick in the Code tab | Good for | Needs |
+|---|---|---|---|
+| **Cloud** | the `merlin-ec/Pww2C` repo | Most work. Runs on Anthropic's machines, so Tom's laptop can be off. Several at once. | GitHub access (done). Cloud environment setup script `npm ci` |
+| **Tom's laptop** | the **PWW (laptop)** session | Anything that needs local tools or logins (e.g. the Supabase CLI) | Laptop on and online; `~/Downloads/connect-claude.sh` has been run |
+
+What to type:
+
+- `/start next`: the agent picks the top unclaimed task from `status.md` → *Next up*, or the *Update pass*.
+- `/start <task in plain words>`: a specific job.
+- `/plan-phase N`: split a phase into PR-sized tasks before building it.
+- `/finish`: checks, independent review, docs, PR. `/start` ends with it anyway.
+
+What's in `.claude/` and why:
+
+- **`settings.json`** lets agents run checks, commit, push their own branch and open PRs without asking. Installing packages, rebasing, merging and the Supabase CLI always ask. Pushing to `main`, force-pushing, `rm -rf` and reading `.env` files are blocked. These rules aren't a security boundary; branch protection on `main` is.
+- **`reviewer`** reviews every branch before its PR, independently of the agent that wrote it.
+- **`db-migrator`** owns every schema change and follows `database.md`.
+
+Tom reviews and merges PRs in the GitHub app. Agents don't merge their own PRs unless Tom says so.
+
 ## Running several agents at once
 
 The PWW 1 lesson: parallel agents broke the schema and tangled git. These rules prevent it.
