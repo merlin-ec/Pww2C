@@ -29,9 +29,8 @@ Most important first. Agents add to this list and never remove an item until it'
 | 0 | **Finish the agent setup** | Three one-time steps so cloud agents can build and can't skip review. | 1. Merge PR #4 in the GitHub app. 2. claude.ai/code → environment settings → setup script `npm ci`. 3. GitHub → Pww2C → Settings → Branches → add a rule for `main`: require a pull request and passing checks. |
 | 1 | **Pick a design direction** | You don't like the prototype's look. Every new screen needs a direction. Until you choose, agents keep the current dark "theatre lobby" look. | Tell Claude: keep theatre lobby, or describe or show a look you like (`open-questions.md` #10). |
 | 2 | **Skim the phase plans** | They're now filled in from your prototype. Anything that's wrong is cheapest to fix now. | `docs/specs/01`–`06`; items marked *(prototype)*. Say if any prototype extras should wait (#11). |
-| 3 | **Wake the database** | The free Supabase project paused itself after a week without traffic, so nothing can read or write to it. This will keep happening until the app is live or on the paid plan. | Supabase dashboard → project `pww` → Restore. It's free and takes a few minutes. Or ask Claude to restore it. |
-| 4 | **Get a TMDB token** | The app can't load any films without it. | themoviedb.org → Settings → API → copy the long *API Read Access Token*. Put it straight into Vercel, never into a chat. |
-| 5 | **Set up Vercel** | This is what puts the site online. | Steps are in `docs/setup.md`. |
+| 3 | **Get a TMDB token** | The app can't load any films without it. | themoviedb.org → Settings → API → copy the long *API Read Access Token*. Put it straight into Vercel, never into a chat. |
+| 4 | **Set up Vercel** | This is what puts the site online. | Steps are in `docs/setup.md`. |
 
 ## Decisions waiting on you
 
@@ -49,6 +48,7 @@ Newest first. Each session gets a few lines here, and the full detail goes in `d
 - Added the agent kit: type `/start next` from your phone and an agent picks the next task, builds it, has a second agent review it, updates the docs and opens a pull request.
 - Agents can run checks, commit and open pull requests without asking you each time. Installs and merges always ask, and pushing to the live code is blocked.
 - The first three tasks are queued: two package-update tasks, then filling in the design doc.
+- Woke the database and checked it: it matches the code exactly, and Supabase's security checker is clean. It pauses itself again after about a week with no visitors, until the app is live.
 
 **18 Nov 2026 (evening): Prototype written into the plans**
 - Your laptop is connected: you can start Claude sessions on it from the Claude app's Code tab.
@@ -109,7 +109,7 @@ What the 18 Nov check found. Agents work through this from the top; the technica
 1. **Small package updates.** Next.js, React, Supabase and Tailwind each have a minor fix out. Low risk, one PR.
 2. **Developer-tool security issues.** 17 known issues in the tools used to lint and test the code. They never reach users, but they should be cleaned up. Part of this is a one-command fix; the rest waits on the tool makers.
 3. **Two big upgrades to decide on later:** TypeScript 7 and ESLint 10. Both are major versions, so they wait until Next.js supports them.
-4. **The database check is still waiting on the database being woken** (*Needs you* #2). Once it's awake, agents confirm the live database matches the code and rerun Supabase's security checker.
+4. ~~Database check~~ Done 18 Nov: the live database matches the code and the security checker is clean. One small speed fix (a missing index) is queued for the next database change.
 5. **Your changes.** The prototype is now in the plans; anything else you've changed goes to the top of this list.
 
 ## Red flags

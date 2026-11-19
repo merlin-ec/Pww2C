@@ -43,6 +43,7 @@ One entry per session, **newest first**. Agents write here at the end of every s
 - `.claude/skills/start`, `finish`, `plan-phase`.
 - `docs/status.md` → new *Next up* table with the first three tasks. `CLAUDE.md`, `workflow.md` (*Running agents*), `decisions.md` and `TOM.md` (*Start building from your phone*) updated.
 - This PR also carries the prototype → specs work, so Tom merges once.
+- Restored the Supabase project (was INACTIVE) at Tom's request via the Supabase connector. Live check: both `schema_migrations` checksums match `sha256sum` of the repo files; security advisor: no lints; performance advisor: INFO only (unindexed FK on `title_availability.provider_id`, 2 unused indexes). Queued the index as *Update pass* #7.
 
 **Changed files / migrations**
 - `.claude/**`, docs. No app code or schema changes.
