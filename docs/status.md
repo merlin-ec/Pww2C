@@ -10,13 +10,13 @@ Claim a row **before** you start. Remove it when the PR merges or you hand off. 
 
 | Task | Spec | Branch | Files / areas touched | Claimed | By |
 |---|---|---|---|---|---|
-| *(none)* | | | | | |
+| Prototype → specs | n/a | `docs/prototype-reference` | `docs/specs/01`–`06`, `docs/product.md`, `docs/design.md`, `docs/decisions.md`, `docs/open-questions.md`, `TOM.md` | 18 Nov 2026 | Claude (claude.ai, PWW 2 project) |
 
 ## Blocked
 
 | What | Blocked on | Since |
 |---|---|---|
-| Product/design part of the update pass | Tom's answer to `open-questions.md` #9 | 17 Nov 2026 |
+| Look of new screens | Tom's design direction (`open-questions.md` #10); until then keep theatre lobby | 18 Nov 2026 |
 | Any database work | Supabase project `pww` is paused; Tom to restore | found 17 Nov 2026 |
 | Live TMDB data | TMDB read token not in Vercel yet | 3 Nov 2026 |
 | Vercel project | Tom to set up (`setup.md`); needs the TMDB token | 3 Nov 2026 |

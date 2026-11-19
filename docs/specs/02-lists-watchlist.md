@@ -1,8 +1,10 @@
 # Phase 2: Lists & watchlist
 
-**Last updated:** 17 Nov 2026
+**Last updated:** 18 Nov 2026
 
-**Status:** Draft  ·  **Owner:** Tom
+**Status:** Draft, filled in from the prototype; Tom to confirm  ·  **Owner:** Tom
+
+**Reference:** the 18 Nov prototype (`docs/product.md` → *Prototype*). Items marked *(prototype)* come from it. Follow its features and flows, not its look.
 
 ## Goal
 Members keep a watchlist and make named lists, and can share any list with a public link.
@@ -11,14 +13,18 @@ Members keep a watchlist and make named lists, and can share any list with a pub
 - As a member, I want a one-tap "add to watchlist" on every title.
 - As a member, I want to make named lists ("Best heist films") and reorder them.
 - As a member, I want to share a list with a link that works for people without an account.
-- *TODO (Tom): more?*
+- As a member, I want my library in four places: **Watchlist**, **Collections**, **Watched** and **Favorites**. *(prototype)*
+- As a member, I want to give a collection a short description ("Sunday comfort watches"). *(prototype)*
 
 ## Acceptance criteria
 - [ ] Add and remove from the watchlist on title pages and in grids
 - [ ] Create, rename, reorder and delete lists; add and remove titles
 - [ ] Share page for a list loads for signed-out visitors
-- [ ] *TODO: can lists be private? (open question 4)*
-- [ ] *TODO*
+- [ ] Collections are **private until the member chooses to share** *(prototype; confirms part of open question 4)*
+- [ ] Library page has tabs with counts: Watchlist, Collections, Watched, Favorites *(prototype)*
+- [ ] A collection has a name and an optional description *(prototype)*
+- [ ] Every title card has a one-tap save (+) to the watchlist *(prototype)*
+- [ ] Empty states point to Discover *(prototype)*
 
 ## Data changes
 *TODO:* lists, list items (with position), and the watchlist (a special list, or its own table?). RLS for owner, visitor (share page) and other members.

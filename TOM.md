@@ -2,13 +2,13 @@
 
 **For Tom.** This is the one page to read. Agents rewrite it at the end of every session, in plain English. The technical detail lives in `docs/`.
 
-**Last updated:** 18 Nov 2026, by Claude (living docs session)
+**Last updated:** 18 Nov 2026, by Claude (prototype session)
 
 ---
 
 ## In one line
 
-The app code and all the docs are now saved on GitHub, under the new "always keep the docs current" rules. The code still builds and passes every test. Next is the update pass: the list below, plus whatever you tell us has changed.
+Your ChatGPT prototype is now the product reference: its features are written into every phase plan, its look isn't. Your laptop is connected, so you can run agents on it from your phone. Next: pick a design direction, then the update pass and the first live version.
 
 ## Needs you
 
@@ -16,21 +16,29 @@ Most important first. Agents add to this list and never remove an item until it'
 
 | # | What | Why it matters | How |
 |---|---|---|---|
-| 1 | **Say what's out of date** | You said the code and the docs are both behind. The checks below find technical gaps, but only you know what changed in your thinking. | Features, stack, design or decisions you've changed. Tell Claude, or add it to `docs/open-questions.md` #9. |
-| 2 | **Wake the database** | The free Supabase project paused itself after a week without traffic, so nothing can read or write to it. This will keep happening until the app is live or on the paid plan. | Supabase dashboard → project `pww` → Restore. It's free and takes a few minutes. Or ask Claude to restore it. |
-| 3 | **Get a TMDB token** | The app can't load any films without it. | themoviedb.org → Settings → API → copy the long *API Read Access Token*. Put it straight into Vercel, never into a chat. |
-| 4 | **Set up Vercel** | This is what puts the site online. | Steps are in `docs/setup.md`. |
+| 1 | **Pick a design direction** | You don't like the prototype's look. Every new screen needs a direction. Until you choose, agents keep the current dark "theatre lobby" look. | Tell Claude: keep theatre lobby, or describe or show a look you like (`open-questions.md` #10). |
+| 2 | **Skim the phase plans** | They're now filled in from your prototype. Anything that's wrong is cheapest to fix now. | `docs/specs/01`–`06`; items marked *(prototype)*. Say if any prototype extras should wait (#11). |
+| 3 | **Wake the database** | The free Supabase project paused itself after a week without traffic, so nothing can read or write to it. This will keep happening until the app is live or on the paid plan. | Supabase dashboard → project `pww` → Restore. It's free and takes a few minutes. Or ask Claude to restore it. |
+| 4 | **Get a TMDB token** | The app can't load any films without it. | themoviedb.org → Settings → API → copy the long *API Read Access Token*. Put it straight into Vercel, never into a chat. |
+| 5 | **Set up Vercel** | This is what puts the site online. | Steps are in `docs/setup.md`. |
 
 ## Decisions waiting on you
 
 These are copied from `docs/open-questions.md`, and only the ones that are blocking work appear here.
 
-- **What's out of date?** You said the code and docs are both behind. This shapes the update pass (see *Needs you* #1).
+- **Design direction** (#10): keep the theatre-lobby look or go somewhere new. Blocks the look of phase 1 screens.
+- **Public or private by default** (#4): the prototype suggests collections private until shared, and reviews visible to the community. Confirm before phase 1–2.
 - Coming up later: **whether PWW will ever make money**, because that changes which TMDB and Vercel terms apply. It's needed before launch (phase 7).
 
 ## What happened recently
 
 Newest first. Each session gets a few lines here, and the full detail goes in `docs/handoff.md`.
+
+**18 Nov 2026 (evening): Prototype written into the plans**
+- Your laptop is connected: you can start Claude sessions on it from the Claude app's Code tab.
+- Went through every screen of your ChatGPT prototype and wrote what it does into the phase plans: half-star ratings and a watch diary, a 4-step taste quiz, "taste fit" scores, group picking with I'm in / Pass, a streaming rotation, taste-match and more.
+- The prototype is now the product reference for features, not for the look. Two questions answered (onboarding, export) and two new ones for you (design direction, prototype extras).
+- Nothing in the app changed.
 
 **18 Nov 2026: Code and docs on GitHub, docs always kept current**
 - Your new rule is in place. Every change updates its docs at the same time, GitHub checks this automatically and blocks changes that skip it, and every doc shows when it was last updated.
@@ -86,13 +94,13 @@ What the 18 Nov check found. Agents work through this from the top; the technica
 2. **Developer-tool security issues.** 17 known issues in the tools used to lint and test the code. They never reach users, but they should be cleaned up. Part of this is a one-command fix; the rest waits on the tool makers.
 3. **Two big upgrades to decide on later:** TypeScript 7 and ESLint 10. Both are major versions, so they wait until Next.js supports them.
 4. **The database check is still waiting on the database being woken** (*Needs you* #2). Once it's awake, agents confirm the live database matches the code and rerun Supabase's security checker.
-5. **Your changes** (*Needs you* #1). These go to the top of the list once you've said what they are.
+5. **Your changes.** The prototype is now in the plans; anything else you've changed goes to the top of this list.
 
 ## Red flags
 
 Anything an agent thinks you should worry about. If this section is empty, nothing is worrying.
 
-- You've said the code and the docs are both out of date. Until the update pass is done, treat the docs as a starting point, not the final word.
+- You've said the code and the docs are both out of date. The phase plans now follow your prototype; the code hasn't caught up yet (update pass).
 
 ---
 

@@ -34,6 +34,37 @@ One entry per session, **newest first**. Agents write here at the end of every s
 
 ---
 
+## 2026-11-18: Prototype written into the specs
+**Agent/session:** claude.ai (PWW 2 project)  ·  **Branch/PR:** `docs/prototype-reference` / see GitHub  ·  **Spec:** 01–06
+
+**Done**
+- Tom shared a ChatGPT-built prototype (<https://pww-picture-house.primemockingbird.chatgpt.site>): "shows the idea of what I want really well", but he doesn't like the look. Went through every view in the built-in browser (home, Discover, title page, 4-step onboarding, watch room, collections, streaming, community, profile, account). I used test values ("Test", "Test room") in the demo, and they're stored only in that browser.
+- `product.md` → *Prototype*: what it shows by area, and the rule: features and flows yes, look no; earlier decisions win on conflicts.
+- Specs 01–06 filled in from it, every item marked *(prototype)*: half-star ratings, short thought, watch diary; Watchlist/Collections/Watched/Favorites, private until shared; 4-step onboarding with skipped genres honoured everywhere; taste-fit score, Not for me, Under 2 hours, Evening Edit, Follow the thread; streaming rotation; watch-room picking (loves/no-thank-yous → group fit → I'm in / Pass → unanimous yes); follow taste, taste-match after 3 shared ratings, feed, report, profile stats, export.
+- Separately: Tom ran `~/Downloads/connect-claude.sh`. Remote Control server "PWW (laptop)" runs in tmux on his laptop.
+
+**Changed files / migrations**
+- Docs only.
+
+**Decisions made**
+- The prototype is the product reference (`decisions.md`). Open questions #6 (onboarding) and #8 (export) answered from it.
+
+**Not done / skipped, and why**
+- Design tokens in `design.md` still TODO (unchanged here).
+- Prototype copy and assets not copied (look is out; copy can be reused only if Tom likes it).
+
+**Risks or things that look wrong**
+- The prototype is US-only and uses fictional community data; v1 keeps six countries (decision stands).
+- Scope grew (#11). Default is to keep everything; Tom may cut.
+
+**Tom should check**
+- `TOM.md` → *Needs you* #1 (design direction) and #2 (skim the specs).
+
+**Next step**
+- Update pass item 1 (patch updates). Then phase 1 once Tom picks a design direction and confirms #4.
+
+---
+
 ## 2026-11-18: Code and docs on GitHub, living docs rule
 **Agent/session:** claude.ai (PWW 2 project)  ·  **Branch/PR:** `chore/foundations-baseline` / #2 (merged), `docs/starter-pack` / #1  ·  **Spec:** n/a
 
