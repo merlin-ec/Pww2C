@@ -1,6 +1,8 @@
 # Design
 
-**Last updated:** 17 Nov 2026
+**Last updated:** 18 Nov 2026
+
+> **Direction is open (`open-questions.md` #10).** Tom doesn't like the 18 Nov prototype's look, so don't copy it: use the prototype only for features and flows (`product.md` → *Prototype*). Until Tom decides, keep building in the current look below.
 
 ## The look: "theatre lobby"
 

@@ -10,6 +10,8 @@ PWW (Prestige World Wide) is a film and TV taste, tracking and recommendation we
 
 ## Start of every session
 
+The quickest way: **`/start <task>`** (or `/start next`), and **`/finish`** at the end. Those skills (`.claude/skills/`) walk through every step below and the end-of-session updates.
+
 1. Read `docs/status.md`. It shows what's done, what's in progress, and who's on it.
 2. Read the newest entry in `docs/handoff.md`.
 3. Read the spec for your task in `docs/specs/`, plus any doc it links to.
@@ -51,6 +53,9 @@ supabase/templates  auth email templates
 tests/unit          logic tests
 tests/db            RLS tests on real Postgres (harness.ts, supabase-stub.sql)
 docs/               see docs/README.md for the map
+.claude/settings.json  permissions: what agents may do without asking, what always asks, what's blocked
+.claude/agents/     reviewer (runs before every PR), db-migrator (every schema change)
+.claude/skills/     /start, /finish, /plan-phase
 ```
 
 ## How the code is written

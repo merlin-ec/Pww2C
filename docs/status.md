@@ -10,14 +10,23 @@ Claim a row **before** you start. Remove it when the PR merges or you hand off. 
 
 | Task | Spec | Branch | Files / areas touched | Claimed | By |
 |---|---|---|---|---|---|
-| *(none)* | | | | | |
+| Prototype → specs, agent kit | n/a | `chore/agent-kit` | `docs/specs/01`–`06`, `docs/product.md`, `docs/design.md`, `docs/decisions.md`, `docs/open-questions.md`, `TOM.md`, `.claude/`, `CLAUDE.md`, `docs/workflow.md` | 18 Nov 2026 | Claude (claude.ai, PWW 2 project) |
+
+## Next up
+
+Tasks ready to build, in order. `/plan-phase` writes them; `/start next` takes the top unclaimed row. Remove a row when its PR merges.
+
+| # | Task | Spec criteria | Files / areas | Depends on | Parallel-safe |
+|---|---|---|---|---|---|
+| 1 | Update pass item 1: patch updates (see *Update pass*) | n/a | `package.json`, `package-lock.json` | none | No (touches `package.json`) |
+| 2 | Update pass item 2: `npm audit fix` for dev tools (no `--force`) | n/a | `package-lock.json` | 1 | No |
+| 3 | Fill `design.md` → *Tokens* from `src/app/globals.css` | n/a | `docs/design.md` | none | Yes |
 
 ## Blocked
 
 | What | Blocked on | Since |
 |---|---|---|
-| Product/design part of the update pass | Tom's answer to `open-questions.md` #9 | 17 Nov 2026 |
-| Any database work | Supabase project `pww` is paused; Tom to restore | found 17 Nov 2026 |
+| Look of new screens | Tom's design direction (`open-questions.md` #10); until then keep theatre lobby | 18 Nov 2026 |
 | Live TMDB data | TMDB read token not in Vercel yet | 3 Nov 2026 |
 | Vercel project | Tom to set up (`setup.md`); needs the TMDB token | 3 Nov 2026 |
 
@@ -38,9 +47,10 @@ Claim a row **before** you start. Remove it when the PR merges or you hand off. 
 
 | Item | Value |
 |---|---|
-| Supabase project | `pww` · ref `qlisfitmvovfzkljmsfm` · us-east-1 · Postgres 17 · free plan · **paused** |
+| Supabase project | `pww` · ref `qlisfitmvovfzkljmsfm` · us-east-1 · Postgres 17 · free plan · active (restored 18 Nov 2026; pauses again after ~7 days without traffic) |
 | Applied migrations | `20261103233128_foundations`, `20261103233622_usage_days_self_read` (checksums in `database.md`) |
-| Last security advisor run | 3 Nov 2026: clean |
+| Last security advisor run | 18 Nov 2026: clean. Performance advisor: INFO only (unindexed FK `title_availability_provider_id_fkey`; 2 unused indexes, expected with no traffic) |
+| Live schema check | 18 Nov 2026: both migration checksums in production match the repo files |
 | GitHub | `merlin-ec/Pww2C` (public). Claude GitHub App installed 17 Nov. `main` = Foundations baseline (PR #2) + docs (PR #1). CI: `ci.yml` (app + database jobs) and `docs-check.yml`, both green |
 | Vercel | Not set up |
 | Live URL | None |
@@ -56,9 +66,10 @@ Checked on 18 Nov 2026 against the Foundations baseline (`3933a2c`). Work top to
 | 1 | Patch/minor updates | `next` + `eslint-config-next` 16.4.5 → 16.4.6 · `react`/`react-dom` 19.3.0 → 19.3.1 · `@supabase/supabase-js` 2.118 → 2.119 · `tailwindcss` + `@tailwindcss/turbopack` 4.3.4 → 4.3.5 · `supabase` CLI 3.0 → 3.2 | Low. Serial-only (touches `package.json`) |
 | 2 | Dev-tool vulnerabilities | 17 (11 high, 6 moderate), all dev-only: picomatch/minimatch ReDoS via `eslint-config-next`, `typescript-eslint` and `vitest`/`vite`. Run `npm audit fix` (no `--force`: it would downgrade `eslint-config-next` to 14). The rest waits on upstream releases | Low (not shipped) |
 | 3 | Major upgrades, decide later | TypeScript 5.9 → 7.0 (native compiler) and ESLint 9 → 10: wait for Next.js 16 support. Keep `@types/node` on 22 to match the Node 22 runtime | Medium. Needs a `decisions.md` entry |
-| 4 | Live schema check | Supabase is paused. After Tom restores it: re-verify both migration checksums against production (files match the 3 Nov record) and rerun the security + performance advisors | Blocked on Tom |
+| 4 | ~~Live schema check~~ | Done 18 Nov: checksums match, security advisor clean | Done |
 | 5 | Deploy | Vercel project, env vars, TMDB token (`setup.md`) | Blocked on Tom |
 | 6 | Docs gardener | Scheduled cloud task that compares docs with code and opens a fix-up PR. Described in `workflow.md`; not switched on | Needs Tom's OK |
+| 7 | Index `title_availability.provider_id` | Performance advisor INFO (unindexed FK). Add in the next migration PR, not a migration on its own | Low. Use `db-migrator` |
 
 ## Known issues
 
