@@ -1,6 +1,6 @@
 # Session handoffs
 
-**Last updated:** 18 Nov 2026
+**Last updated:** 24 Nov 2026
 
 One entry per session, **newest first**. Agents write here at the end of every session. Write it so the next agent (or Tom) can continue without reading the chat.
 
@@ -31,6 +31,41 @@ One entry per session, **newest first**. Agents write here at the end of every s
 **Next step**
 - …
 ```
+
+---
+
+## 2026-11-24: Update pass #1, patch/minor updates
+**Agent/session:** Claude Code cloud session  ·  **Branch/PR:** `chore/patch-updates` / see GitHub  ·  **Spec:** n/a
+
+**Done**
+- `next` + `eslint-config-next` 16.4.5 → 16.4.6 and `react`/`react-dom` 19.3.0 → 19.3.1, all still exact-pinned.
+- Floors raised: `@supabase/supabase-js` ^2.119.2, `supabase` CLI ^3.4.0 (the plan said 3.2, but 3.4 is the newest minor), `tailwindcss` + `@tailwindcss/turbopack` ^4.3.5, `@types/react` ^19.3.1, `vitest` ^5.1.1.
+- Results:
+  - `npm run check` (18 tests) and `npm run build` pass.
+  - `npm audit --omit=dev`: 0 vulnerabilities.
+  - Full `npm audit`: 7 moderate, down from 17 (11 high). Update pass #2 is smaller now.
+  - `next start` smoke test: `/`, `/search`, `/login` and `/auth/error` all return 200 (no TMDB token here, so no live titles).
+- Removed the stale `chore/agent-kit` claim (PR #4 merged).
+- The lockfile was generated with npm 10.9.4, the npm that ships with Node 22 (CI and Vercel). This cloud machine has Node 24 and npm 11, whose first attempt dropped two optional WebAssembly entries (`@emnapi/runtime`, `@emnapi/core`); the reviewer caught it. The checks above were re-run after a clean `npm ci` from the final lockfile.
+
+**Changed files / migrations**
+- `package.json`, `package-lock.json`, `docs/status.md`, `docs/handoff.md`, `TOM.md`. No schema.
+
+**Decisions made**
+- None. TypeScript 7, ESLint 10 and `@types/node` 26 stay out, per *Update pass* #3.
+
+**Not done / skipped, and why**
+- `npm run test:db`: no Postgres in this cloud session. CI runs it on the PR. No database code or `pg` version changed.
+- Not checked in a browser at phone width: no UI changed.
+
+**Risks or things that look wrong**
+- This branch and `docs/emerald-brass-and-install-hook` (PR open, unmerged) both edit `docs/status.md`, `docs/handoff.md` and `TOM.md`. Whichever merges second needs a small merge of those three files.
+
+**Tom should check**
+- Nothing beyond reviewing the PR.
+
+**Next step**
+- Update pass #2 (`npm audit fix`, no `--force`) once this merges.
 
 ---
 
