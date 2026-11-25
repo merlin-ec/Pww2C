@@ -18,7 +18,7 @@ Tasks ready to build, in order. `/plan-phase` writes them; `/start next` takes t
 
 | # | Task | Spec criteria | Files / areas | Depends on | Parallel-safe |
 |---|---|---|---|---|---|
-| 1 | Update pass item 2: `npm audit fix` for dev tools (no `--force`) | n/a | `package-lock.json` | none (item 1 merged in PR #5) | No |
+| 1 | Update pass item 2: `npm audit fix` for dev tools. **Built, PR open** on `chore/audit-fix` | n/a | `package-lock.json` | none | No |
 
 ## Blocked
 
@@ -56,12 +56,12 @@ Tasks ready to build, in order. `/plan-phase` writes them; `/start next` takes t
 
 Checked on 18 Nov 2026 against the Foundations baseline (`3933a2c`). Work top to bottom; one PR per numbered item. Tom's own changes (`open-questions.md` #9) go first once he gives them.
 
-**Already green:** `npm run lint`, `npm run typecheck`, `npm test` (18), `npm run test:db` (18, on Postgres 16 locally and 17 in CI), `npm run build`, `npm audit --omit=dev --audit-level=high` (0 vulnerabilities). The first CI run on GitHub passed both jobs.
+**Already green:** `npm run lint`, `npm run typecheck`, `npm test` (18), `npm run test:db` (18, on Postgres 16 locally and 17 in CI), `npm run build`, `npm audit --omit=dev --audit-level=high` (0 vulnerabilities); full `npm audit` 0 since 25 Nov (update pass #2). The first CI run on GitHub passed both jobs.
 
 | # | Item | Detail | Risk |
 |---|---|---|---|
 | 1 | ~~Patch/minor updates~~ | Done 24 Nov on `chore/patch-updates`: `next` + `eslint-config-next` 16.4.6, `react`/`react-dom` 19.3.1, `@supabase/supabase-js` 2.119.2, `tailwindcss` + `@tailwindcss/turbopack` 4.3.5, `supabase` CLI 3.4.0, `@types/react` 19.3.1, `vitest` 5.1.1 | Done (PR #5, merged 25 Nov) |
-| 2 | Dev-tool vulnerabilities | Was 17 (11 high, 6 moderate). After item 1 (24 Nov): **7 moderate, 0 high**, all dev-only (minimatch ReDoS via `eslint-config-next`, `typescript-eslint` and `vitest`/`vite`). Run `npm audit fix` (no `--force`: it would downgrade `eslint-config-next` to 14). The rest waits on upstream releases | Low (not shipped) |
+| 2 | ~~Dev-tool vulnerabilities~~ | Done 25 Nov on `chore/audit-fix`: `npm audit fix` (no `--force`) moved `typescript-eslint` to 8.74 and its `minimatch` to 11. `npm audit`: **0 vulnerabilities** (was 17, then 7) | Done (PR open) |
 | 3 | Major upgrades, decide later | TypeScript 5.9 → 7.0 (native compiler) and ESLint 9 → 10: wait for Next.js 16 support. Keep `@types/node` on 22 to match the Node 22 runtime | Medium. Needs a `decisions.md` entry |
 | 4 | ~~Live schema check~~ | Done 18 Nov: checksums match, security advisor clean | Done |
 | 5 | Deploy | Vercel project, env vars, TMDB token (`setup.md`) | Blocked on Tom |
