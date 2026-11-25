@@ -10,7 +10,7 @@ Claim a row **before** you start. Remove it when the PR merges or you hand off. 
 
 | Task | Spec | Branch | Files / areas touched | Claimed | By |
 |---|---|---|---|---|---|
-| Prototype → specs, agent kit | n/a | `chore/agent-kit` | `docs/specs/01`–`06`, `docs/product.md`, `docs/design.md`, `docs/decisions.md`, `docs/open-questions.md`, `TOM.md`, `.claude/`, `CLAUDE.md`, `docs/workflow.md` | 18 Nov 2026 | Claude (claude.ai, PWW 2 project) |
+| Update pass #1: patch/minor updates | n/a | `chore/patch-updates` | `package.json`, `package-lock.json`, `docs/status.md`, `docs/handoff.md`, `TOM.md` | 24 Nov 2026 | Claude (cloud session) |
 
 ## Next up
 
