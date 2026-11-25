@@ -20,15 +20,17 @@ Colours, as Tailwind theme tokens (`bg-curtain`, `text-program`, `border-seam` a
 | `velvet` | `#0b1a14` | page background; text on brass buttons | |
 | `curtain` | `#11241c` | cards, panels, notices, skeletons | |
 | `plush` | `#183126` | text inputs | |
-| `seam` | `#2c4a3c` | borders and dividers (decorative) | 1.8:1 on velvet. Not used as text |
+| `seam` | `#2c4a3c` | borders and dividers; input and quiet-button borders | 1.8 velvet · 1.7 curtain · 1.4 plush. Below the 3:1 WCAG asks for input borders (the old palette was lower still): a known gap to fix in the polish phase. Not used as text |
 | `ivory` | `#f3e7d3` | body text | 14.7 velvet · 13.3 curtain · 11.4 plush |
 | `program` | `#bfa88c` | secondary text; placeholders at 85% | 7.8 velvet · 7.1 curtain · 6.1 plush · placeholder 4.8 |
 | `brass` | `#cfa45a` | primary buttons, links, focus ring | 7.8 on velvet; velvet on brass 7.8 |
 | `brass-bright` | `#e6c27e` | primary button hover | velvet on it 10.6 |
 | `marquee` | `#fff4da` | the backlit marquee | |
 | `marquee-ink` | `#0b1a14` | marquee text (same as velvet) | 16.4 on marquee |
-| `exit` | `#eb5f56` | errors, destructive actions (was `#e5534b`, brightened for curtain) | 5.4 velvet · 4.9 curtain |
+| `exit` | `#eb5f56` | errors, destructive actions (was `#e5534b`, brightened for curtain) | 5.4 velvet · 4.9 curtain · **4.2 plush: never put error text on an input**. Delete button on its hover tint: 4.7 on velvet, 4.3 on curtain, so keep it on velvet |
 | `go` | `#8fc98f` | success messages | 9.3 velvet · 8.5 curtain |
+
+Not yet emerald: the auth email templates (`supabase/templates/confirmation.html`, `recovery.html`) still use the old velvet `#1b0e11` for button text. Changing email is on the ask-Tom list (`CLAUDE.md`), so it waits for him.
 
 Fonts: `font-display` = Big Shoulders Display (marquee only), `font-sans` = Instrument Sans (everything else). The browser theme colour in `src/app/layout.tsx` matches `velvet`.
 

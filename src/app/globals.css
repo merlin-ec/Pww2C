@@ -6,8 +6,9 @@
  * you should press, and a backlit marquee for the one thing you should read.
  *
  * The surface names are fabrics, not colours: since 24 Nov the velvet is
- * emerald (docs/decisions.md -> Design). Every text colour here meets WCAG AA
- * on velvet, curtain and plush; docs/design.md -> Tokens has the ratios.
+ * emerald (docs/decisions.md -> Design). Every text colour meets WCAG AA on
+ * the backgrounds it's used on, but exit (error red) is only 4.2:1 on plush:
+ * never put error text on an input. docs/design.md -> Tokens has the ratios.
  */
 @theme {
   --color-velvet: #0b1a14;

@@ -2,13 +2,13 @@
 
 **For Tom.** This is the one page to read. Agents rewrite it at the end of every session, in plain English. The technical detail lives in `docs/`.
 
-**Last updated:** 24 Nov 2026, by Claude (install hook session)
+**Last updated:** 25 Nov 2026, by Claude (emerald palette session)
 
 ---
 
 ## In one line
 
-Design direction chosen: emerald and brass. Cloud agents now install the app's packages themselves. Next: the package updates, the emerald colours, then the first live version.
+Three pull requests are waiting for you: cloud agents installing packages themselves, small package updates, and the new emerald look. After those: the TMDB token and Vercel, so the site can go live.
 
 ## Start building from your phone
 
@@ -28,6 +28,7 @@ Most important first. Agents add to this list and never remove an item until it'
 |---|---|---|---|
 | 0 | **Protect `main`** | So agents can't skip review. (PR #4 is merged, and the setup-script step is no longer needed: this session's PR installs packages automatically.) | GitHub → Pww2C → Settings → Branches → add a rule for `main`: require a pull request and passing checks. |
 | 1 | **Merge the install-hook PR** | Cloud agents install packages themselves once it's in. It also records emerald and brass as your design direction. | Review and merge it in the GitHub app. |
+| 1a | **Judge the emerald colours** | It's your look; the shades are the agent's proposal. | Open the emerald pull request and look at the before/after pictures (`docs/design/`). Merge it after the install-hook one, or say "lighter", "greener" or similar and an agent will adjust. |
 | 2 | **Skim the phase plans** | They're now filled in from your prototype. Anything that's wrong is cheapest to fix now. | `docs/specs/01`–`06`; items marked *(prototype)*. Say if any prototype extras should wait (#11). |
 | 3 | **Get a TMDB token** | The app can't load any films without it. | themoviedb.org → Settings → API → copy the long *API Read Access Token*. Put it straight into Vercel, never into a chat. |
 | 4 | **Set up Vercel** | This is what puts the site online. | Steps are in `docs/setup.md`. |
@@ -42,6 +43,12 @@ These are copied from `docs/open-questions.md`, and only the ones that are block
 ## What happened recently
 
 Newest first. Each session gets a few lines here, and the full detail goes in `docs/handoff.md`.
+
+**25 Nov 2026: The emerald look**
+- The site's dark red background is now deep emerald green, with the brass buttons, ivory text and lit-up marquee unchanged. Before/after pictures for desktop and phone are in the pull request.
+- Every bit of text was rechecked for readability on the new green. The error red is a touch brighter and placeholder text a touch stronger, so both stay easy to read.
+- The exact shades are my proposal. Say if you want them lighter, greener or warmer. This pull request sits on top of the install-hook one, so merge that one first.
+- I couldn't check a film page, because the site can't load films until it has the TMDB token. Only the home, search, log-in and sign-up pages were checked.
 
 **24 Nov 2026: Packages install themselves; emerald and brass**
 - Cloud agents now install the app's packages when a session starts, using a script kept in the code, so you don't need the claude.ai setup-script step. The first start takes about 20 seconds, and later starts skip the install.
@@ -65,11 +72,6 @@ Newest first. Each session gets a few lines here, and the full detail goes in `d
 - Your new rule is in place. Every change updates its docs at the same time, GitHub checks this automatically and blocks changes that skip it, and every doc shows when it was last updated.
 - The app code and all the docs are saved on GitHub. The code and the docs each had their own rulebook for agents; they're now merged into one.
 - Checked the code: it still builds and passes all 36 tests and the security checks. A few packages are slightly behind, and some developer-only tools have known security issues that never reach users. Details are in *Update list* below.
-- Nothing in the app changed.
-
-**17 Nov 2026: Docs starter pack**
-- Added the rulebook agents read before they touch anything (`CLAUDE.md`), this page, and docs for security, workflow, testing, costs and each upcoming feature.
-- Found that the database had paused itself, and that Claude couldn't see the GitHub repo yet.
 - Nothing in the app changed.
 
 ## Try it yourself

@@ -1,6 +1,6 @@
 # Session handoffs
 
-**Last updated:** 24 Nov 2026
+**Last updated:** 25 Nov 2026
 
 One entry per session, **newest first**. Agents write here at the end of every session. Write it so the next agent (or Tom) can continue without reading the chat.
 
@@ -31,6 +31,48 @@ One entry per session, **newest first**. Agents write here at the end of every s
 **Next step**
 - …
 ```
+
+---
+
+## 2026-11-25: Emerald + brass palette
+**Agent/session:** Claude Code session  ·  **Branch/PR:** `feat/emerald-palette`, stacked on `docs/emerald-brass-and-install-hook` / see GitHub  ·  **Spec:** n/a (`design.md`)
+
+**Done**
+- `src/app/globals.css` tokens:
+  - velvet `#0b1a14`, curtain `#11241c`, plush `#183126`, seam `#2c4a3c`
+  - marquee-ink `#0b1a14`
+  - exit `#e5534b` → `#eb5f56`, plus its rgb hover tint
+  - placeholder opacity 0.7 → 0.85
+- `src/app/layout.tsx`: `themeColor` updated to match velvet.
+- Contrast: every text colour is WCAG AA on the backgrounds it's used on. The exception is `exit` on plush (4.2), which nothing uses; `design.md` says not to. The ratios are in `design.md` → *Tokens*; the script was a throwaway in the session scratchpad.
+- `design.md`: *Tokens* filled in (it was a TODO), and the direction note updated. `decisions.md`: the emerald values and keeping the token names.
+- Screenshots of `/`, `/login`, `/signup` and `/search` at 1280×900 and 390×844, before and after, taken with headless Firefox. Side-by-side images are in `docs/design/` (desktop: home and sign-up; phone: home and log-in).
+
+**Changed files / migrations**
+- `src/app/globals.css`, `src/app/layout.tsx`, `docs/design.md`, `docs/design/*.png`, `docs/decisions.md`, `docs/status.md`, `docs/handoff.md`, `TOM.md`, `CHANGELOG.md`. No schema.
+
+**Decisions made** (also added to decisions.md)
+- Deep, low-saturation emerald, as dark as the velvet it replaces. This is the agent's proposal and Tom judges it in the PR.
+- Token names kept: they're fabrics, not colours.
+
+**Not done / skipped, and why**
+- Title pages, account pages and poster grids weren't seen: there's no TMDB token, and nobody can sign in here. They use the same tokens, so they change the same way.
+- Playwright isn't installed on this machine (it's Tom's laptop session, not the cloud image), so I used snap Firefox's `--screenshot`.
+- `npm run test:db` not run: no database change.
+
+**Risks or things that look wrong**
+- The PR is stacked: merge the install-hook PR first, or this PR's diff will include that work too.
+- `seam` borders are 1.8:1 on velvet. The old ones were 1.5:1, so this is no worse. Fine for decorative lines, but input boundaries rely on the plush fill rather than the border.
+
+- The email templates still use the old velvet colour for button text. Not changed, because email changes need Tom (`design.md` notes it).
+- Claim row removed at finish, per `/finish`; *Next up* #3 says "PR open" until it merges.
+
+**Tom should check**
+- The before/after images. Is the green right?
+- Whether the confirmation and password-reset emails should switch to the emerald colour too.
+
+**Next step**
+- Update pass #2 after the package-updates PR merges, or `/plan-phase 1`.
 
 ---
 

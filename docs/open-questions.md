@@ -1,6 +1,6 @@
 # Open questions
 
-**Last updated:** 24 Nov 2026
+**Last updated:** 25 Nov 2026
 
 Decisions only Tom can make. Agents add questions here instead of guessing, then add anything blocking work to `TOM.md` → *Needs you*. When Tom answers, record the answer, move it to `decisions.md`, and mark it answered here.
 
@@ -16,6 +16,7 @@ Decisions only Tom can make. Agents add questions here instead of guessing, then
 | 7 | Analytics: none, privacy-friendly (e.g. Vercel Analytics), or full? | Privacy policy, cost | Phase 7 | 17 Nov 2026 |
 | 9 | Tom says the Foundations code and these docs are both out of date. What else has changed in his thinking (features, stack, design, decisions)? *Partly answered 18 Nov: the prototype (`product.md` → Prototype).* | Agents can find technical gaps, but not changes in Tom's plans | The update pass before phase 1 | 17 Nov 2026 |
 | 11 | The prototype adds features the plan didn't have: the *Evening Edit* home feature, streaming rotation, taste-match, watch diary, trailer link, similar titles, profile stats. They're in the specs now. Keep all in v1, or cut some? | Scope and build time | Nothing yet (default: keep) | 18 Nov 2026 |
+| 12 | Should the confirmation and password-reset emails switch to the emerald colours? They still use the old velvet red for button text. Changing email is on the ask-Tom list | Small visual mismatch between site and emails | Nothing (default: change it with phase 7 email setup) | 25 Nov 2026 |
 
 ## Answered
 
