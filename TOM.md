@@ -2,13 +2,13 @@
 
 **For Tom.** This is the one page to read. Agents rewrite it at the end of every session, in plain English. The technical detail lives in `docs/`.
 
-**Last updated:** 25 Nov 2026, by Claude (emerald palette session, merged with main)
+**Last updated:** 25 Nov 2026, by Claude (security clean-up session)
 
 ---
 
 ## In one line
 
-The package updates are in. One pull request is left: the new emerald look, which also carries the install hook. After that: the TMDB token and Vercel, so the site can go live.
+The emerald look, the install hook and the package updates are all in. The last clean-up (developer-tool security fixes) is in a pull request. After that, it's the TMDB token and Vercel, so the site can go live, and then phase 1.
 
 ## Start building from your phone
 
@@ -26,8 +26,8 @@ Most important first. Agents add to this list and never remove an item until it'
 
 | # | What | Why it matters | How |
 |---|---|---|---|
-| 0 | **Protect `main`** | So agents can't skip review. (PR #4 is merged, and the claude.ai setup-script step isn't needed once the emerald pull request is in, because it brings the install hook with it.) | GitHub → Pww2C → Settings → Branches → add a rule for `main`: require a pull request and passing checks. |
-| 1 | **Judge and merge the emerald pull request** | It's your new look, and it also carries the install hook, so merging it closes the install-hook pull request too. The shades are the agent's proposal. | Look at the before/after pictures (`docs/design/` in the pull request), then merge it. Or say "lighter", "greener" or similar and an agent will adjust. |
+| 0 | **Protect `main`** | So agents can't skip review. (The claude.ai setup-script step is no longer needed: the install hook is merged.) | GitHub → Pww2C → Settings → Branches → add a rule for `main`: require a pull request and passing checks. |
+| 1 | **Merge the security clean-up pull request** | Clears the last 7 known issues in the developer tools. | Review and merge it in the GitHub app. |
 | 2 | **Skim the phase plans** | They're now filled in from your prototype. Anything that's wrong is cheapest to fix now. | `docs/specs/01`–`06`; items marked *(prototype)*. Say if any prototype extras should wait (#11). |
 | 3 | **Get a TMDB token** | The app can't load any films without it. | themoviedb.org → Settings → API → copy the long *API Read Access Token*. Put it straight into Vercel, never into a chat. |
 | 4 | **Set up Vercel** | This is what puts the site online. | Steps are in `docs/setup.md`. |
@@ -42,6 +42,12 @@ These are copied from `docs/open-questions.md`, and only the ones that are block
 ## What happened recently
 
 Newest first. Each session gets a few lines here, and the full detail goes in `docs/handoff.md`.
+
+**25 Nov 2026: Developer-tool security issues cleared**
+- The emerald pull request (#6) is merged, so the new look and the install hook are both live in the code.
+- Ran the one-command fix for the developer tools: the known security issues went from 7 to 0. None of them ever reached users.
+- Only the list of exact package versions changed. The app builds and every check passes.
+- Not run here: the database tests (no database on this machine). GitHub runs them on the pull request.
 
 **25 Nov 2026: The emerald look**
 - The site's dark red background is now deep emerald green, with the brass buttons, ivory text and lit-up marquee unchanged. Before/after pictures for desktop and phone are in the pull request.
@@ -67,12 +73,6 @@ Newest first. Each session gets a few lines here, and the full detail goes in `d
 - The first three tasks are queued: two package-update tasks, then filling in the design doc.
 - Woke the database and checked it: it matches the code exactly, and Supabase's security checker is clean. It pauses itself again after about a week with no visitors, until the app is live.
 
-**18 Nov 2026 (evening): Prototype written into the plans**
-- Your laptop is connected: you can start Claude sessions on it from the Claude app's Code tab.
-- Went through every screen of your ChatGPT prototype and wrote what it does into the phase plans: half-star ratings and a watch diary, a 4-step taste quiz, "taste fit" scores, group picking with I'm in / Pass, a streaming rotation, taste-match and more.
-- The prototype is now the product reference for features, not for the look. Two questions answered (onboarding, export) and two new ones for you (design direction, prototype extras).
-- Nothing in the app changed.
-
 ## Try it yourself
 
 Things worth clicking once the site is live. Agents list what's new and how to check it.
@@ -94,7 +94,7 @@ The full breakdown is in `docs/costs.md`. An agent must stop and ask you before 
 
 | Phase | Status |
 |---|---|
-| 0. Foundations | ✅ Built, tested and on GitHub, but out of date · ⏳ update pass, then Vercel |
+| 0. Foundations | ✅ Built, tested and on GitHub · emerald look · update pass done once the security clean-up merges · ⏳ Vercel (needs you) |
 | 1. Ratings & reviews | Not started |
 | 2. Lists & watchlist | Not started |
 | 3. Onboarding & recommendations | Not started |
@@ -108,7 +108,7 @@ The full breakdown is in `docs/costs.md`. An agent must stop and ask you before 
 What the 18 Nov check found. Agents work through this from the top; the technical detail is in `docs/status.md` → *Update pass*.
 
 1. ~~Small package updates~~ Done, merged 25 Nov (pull request #5).
-2. **Developer-tool security issues.** Down to 7 minor issues in the tools used to lint and test the code. They never reach users. Part of this is a one-command fix; the rest waits on the tool makers.
+2. ~~Developer-tool security issues~~ Fixed 25 Nov: 0 known issues (pull request open).
 3. **Two big upgrades to decide on later:** TypeScript 7 and ESLint 10. Both are major versions, so they wait until Next.js supports them.
 4. ~~Database check~~ Done 18 Nov: the live database matches the code and the security checker is clean. One small speed fix (a missing index) is queued for the next database change.
 5. **Your changes.** The prototype is now in the plans; anything else you've changed goes to the top of this list.

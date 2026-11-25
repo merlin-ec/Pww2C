@@ -34,6 +34,41 @@ One entry per session, **newest first**. Agents write here at the end of every s
 
 ---
 
+## 2026-11-25: Update pass #2, `npm audit fix`
+**Agent/session:** Claude Code session (Tom's laptop)  ·  **Branch/PR:** `chore/audit-fix` / see GitHub  ·  **Spec:** n/a
+
+**Done**
+- PR #6 (emerald palette + install hook) merged before this session. Removed its *Next up* row.
+- `npx npm@10.9.4 audit fix`, without `--force`, using Node 22's npm so the lockfile matches CI and Vercel. Only `package-lock.json` changed:
+  - `typescript-eslint` 8.72.1 → 8.74.0 (11 packages), and its nested `minimatch` 10.2.6 → 11.0.9
+  - two patch bumps
+  - one new transitive package, `@isaacs/nonrecursive-glob-match` 1.1.0
+  - no install scripts, all from `registry.npmjs.org`
+- After a clean `npm ci`: `npm audit` reports 0 vulnerabilities (was 7 moderate); `npm run check` (18 tests, lint clean) and `npm run build` pass.
+
+**Changed files / migrations**
+- `package-lock.json`, `docs/status.md`, `docs/handoff.md`, `TOM.md`. No schema.
+
+**Decisions made**
+- None.
+
+**Not done / skipped, and why**
+- `npm run test:db`: no Postgres on this machine. CI runs it.
+- Newer patch releases exist for `@types/react` (19.3.3) and `vitest` (5.1.2). They weren't part of this task and are in range, so the next lockfile refresh picks them up.
+
+**Risks or things that look wrong**
+- Dev tools only; nothing that ships to users changed.
+- The new `@isaacs/nonrecursive-glob-match` is young (published 26 Oct 2026) and has no `repository` field in its npm metadata. Its maintainer is the minimatch author, and `npm audit signatures` verified it (reviewer check).
+- Regenerate this lockfile with npm 10 (`npx npm@10.9.4`), not npm 11, which drops optional entries.
+
+**Tom should check**
+- Nothing beyond merging.
+
+**Next step**
+- The update pass is done apart from #3 (TypeScript 7 / ESLint 10: wait for Next.js), #5 (deploy: Tom), #6 (docs gardener: Tom's OK) and #7 (index, which waits for the next migration). Next: `/plan-phase 1`.
+
+---
+
 ## 2026-11-25: Emerald + brass palette
 **Agent/session:** Claude Code session  ·  **Branch/PR:** `feat/emerald-palette`, which includes all of `docs/emerald-brass-and-install-hook` / see GitHub  ·  **Spec:** n/a (`design.md`)
 
