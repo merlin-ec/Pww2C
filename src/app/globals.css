@@ -1,22 +1,26 @@
 @import "tailwindcss";
 
 /*
- * PWW design tokens: a theatre lobby after dark.
+ * PWW design tokens: a theatre lobby after dark, in emerald and brass.
  * Velvet and curtain for surfaces, ivory for text, brass for the one thing
  * you should press, and a backlit marquee for the one thing you should read.
+ *
+ * The surface names are fabrics, not colours: since 24 Nov the velvet is
+ * emerald (docs/decisions.md -> Design). Every text colour here meets WCAG AA
+ * on velvet, curtain and plush; docs/design.md -> Tokens has the ratios.
  */
 @theme {
-  --color-velvet: #1b0e11;
-  --color-curtain: #261418;
-  --color-plush: #351c21;
-  --color-seam: #4a2a30;
+  --color-velvet: #0b1a14;
+  --color-curtain: #11241c;
+  --color-plush: #183126;
+  --color-seam: #2c4a3c;
   --color-ivory: #f3e7d3;
   --color-program: #bfa88c;
   --color-brass: #cfa45a;
   --color-brass-bright: #e6c27e;
   --color-marquee: #fff4da;
-  --color-marquee-ink: #1b0e11;
-  --color-exit: #e5534b;
+  --color-marquee-ink: #0b1a14;
+  --color-exit: #eb5f56;
   --color-go: #8fc98f;
 
   --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
@@ -166,7 +170,7 @@
   }
 
   .button-danger:hover {
-    background-color: rgb(229 83 75 / 0.12);
+    background-color: rgb(235 95 86 / 0.12);
   }
 
   .text-input {
@@ -180,7 +184,8 @@
   }
 
   .text-input::placeholder {
-    color: rgb(191 168 140 / 0.7);
+    /* 85%, not 70%: placeholders stay at 4.5:1 on the emerald plush. */
+    color: rgb(191 168 140 / 0.85);
   }
 
   .text-input:focus-visible {

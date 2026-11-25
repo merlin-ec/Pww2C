@@ -2,7 +2,7 @@
 
 The agents' working board. Tom's plain-English version is `TOM.md`.
 
-**Last updated:** 24 Nov 2026
+**Last updated:** 25 Nov 2026
 
 ## In progress (claims)
 
@@ -10,7 +10,6 @@ Claim a row **before** you start. Remove it when the PR merges or you hand off. 
 
 | Task | Spec | Branch | Files / areas touched | Claimed | By |
 |---|---|---|---|---|---|
-| Next up #3: emerald + brass palette | n/a | `feat/emerald-palette` (stacked on `docs/emerald-brass-and-install-hook`) | `src/app/globals.css`, `docs/design.md`, `docs/decisions.md` | 24 Nov 2026 | Claude (cloud session) |
 
 ## Next up
 
@@ -20,7 +19,7 @@ Tasks ready to build, in order. `/plan-phase` writes them; `/start next` takes t
 |---|---|---|---|---|---|
 | 1 | Update pass item 1: patch updates (see *Update pass*) | n/a | `package.json`, `package-lock.json` | none | No (touches `package.json`) |
 | 2 | Update pass item 2: `npm audit fix` for dev tools (no `--force`) | n/a | `package-lock.json` | 1 | No |
-| 3 | Emerald + brass palette: propose emerald values for the velvet/curtain/plush/seam tokens in `src/app/globals.css` (keep brass). Also recheck `marquee-ink` (velvet red, used as text), `program` and `go` (green on emerald) for WCAG AA contrast. Decide whether to rename the tokens (used in components, e.g. `from-velvet/30`) and log it in `decisions.md`. fill `design.md` → *Tokens*, screenshot desktop + phone for Tom in the PR | n/a | `src/app/globals.css`, `docs/design.md` | none | Yes |
+| 3 | Emerald + brass palette. **Built, PR open** on `feat/emerald-palette` (stacked on the install-hook PR) | n/a | `src/app/globals.css`, `src/app/layout.tsx`, `docs/design.md` | install-hook PR | Yes |
 
 ## Blocked
 
