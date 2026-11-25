@@ -10,7 +10,6 @@ Claim a row **before** you start. Remove it when the PR merges or you hand off. 
 
 | Task | Spec | Branch | Files / areas touched | Claimed | By |
 |---|---|---|---|---|---|
-| Update pass #1: patch/minor updates | n/a | `chore/patch-updates` | `package.json`, `package-lock.json`, `docs/status.md`, `docs/handoff.md`, `TOM.md` | 24 Nov 2026 | Claude (cloud session) |
 
 ## Next up
 
