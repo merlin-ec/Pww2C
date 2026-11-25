@@ -1,6 +1,6 @@
 # Decision log
 
-**Last updated:** 18 Nov 2026
+**Last updated:** 24 Nov 2026
 
 One line per decision, newest at the bottom of each section. If you change one, add a line saying what replaced it and why; don't delete history.
 
@@ -43,3 +43,8 @@ One line per decision, newest at the bottom of each section. If you change one, 
 - **This log stays one line per decision** (decision in bold, then why and what we didn't choose). The longer template in the starter pack's `workflow.md` was changed to match.
 - **The 18 Nov prototype is the product reference (Tom, 18 Nov).** It shows the idea of what Tom wants, so the specs follow its features and flows; Tom doesn't like its look, so the design doesn't. Where it conflicts with an earlier decision, the earlier decision stands until Tom changes it.
 - **Agents work from a shared kit in `.claude/` (18 Nov).** `/start` and `/finish` skills so every session follows the same steps, an independent `reviewer` agent before every PR, a `db-migrator` agent for all schema changes, and a permissions file that allows routine work, asks for installs, rebases and merges, and blocks pushes to `main`. We chose this over long instructions in each prompt, because Tom starts agents from his phone and a short command is all he should need to type.
+- **Cloud sessions install packages with a SessionStart hook, not a claude.ai setup script (24 Nov).** `.claude/settings.json` runs `scripts/install_pkgs.sh` at session start and resume. It runs `npm ci` only on cloud machines (`CLAUDE_CODE_REMOTE=true`) and only when `package.json`, `package-lock.json` or the script changed since the last install. It lives in the repo, so it's reviewed in PRs and Tom has no claude.ai setting to keep in sync. It never stops a session starting: if the install fails, `npm run check` fails and the agent runs `npm ci` itself. This replaces the "setup script `npm ci`" step in `TOM.md` → *Needs you* #0.
+
+## Design (24 Nov 2026)
+
+- **Design direction: emerald and brass (Tom, 24 Nov; answers `open-questions.md` #10).** It replaces the velvet-red base of the theatre lobby with dark emerald and keeps brass as the accent. Still dark only, still the backlit marquee and the self-hosted fonts, since Tom named a palette, not a new layout. The exact colour values aren't chosen yet: the next design task proposes them in `globals.css` and `design.md` with contrast checked, and Tom sees them in that PR.

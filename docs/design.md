@@ -1,12 +1,12 @@
 # Design
 
-**Last updated:** 18 Nov 2026
+**Last updated:** 24 Nov 2026
 
-> **Direction is open (`open-questions.md` #10).** Tom doesn't like the 18 Nov prototype's look, so don't copy it: use the prototype only for features and flows (`product.md` → *Prototype*). Until Tom decides, keep building in the current look below.
+> **Direction: emerald and brass (Tom, 24 Nov; `decisions.md` → *Design*).** Dark emerald replaces the velvet red; brass stays the accent. The exact colour values aren't chosen yet (`status.md` → *Next up*). Until that PR merges, the code still uses the velvet palette below. Don't copy the 18 Nov prototype's look: use it only for features and flows (`product.md` → *Prototype*).
 
-## The look: "theatre lobby"
+## The look: "theatre lobby", in emerald and brass
 
-- Dark, warm, cinematic: velvet and brass.
+- Dark, warm, cinematic: emerald and brass (was velvet and brass in Foundations).
 - **Backlit marquee** for titles: the signature motif. Use it for headline titles only, not everywhere.
 - Fonts are self-hosted (no third-party font requests).
 - Built with Tailwind.

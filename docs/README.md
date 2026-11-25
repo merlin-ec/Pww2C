@@ -1,6 +1,6 @@
 # Docs map
 
-**Last updated:** 18 Nov 2026
+**Last updated:** 24 Nov 2026
 
 These docs are kept current: every change updates its doc in the same PR, and CI checks it. See `../CLAUDE.md` → *Keep the docs current*.
 
@@ -35,7 +35,7 @@ Who each doc is for, and when it gets updated. Files marked **(existing)** came 
 | `integrations.md` | TMDB, JustWatch, Supabase, Vercel, Claude API, email |
 | `recommendations.md` | Scoring engine, Claude layer, the $10 cap |
 | `env.md` | Every environment variable: public or secret, where it's set |
-| `design.md` | The theatre-lobby look, components, copy tone |
+| `design.md` | The look (emerald and brass), components, copy tone |
 | `how-it-works/` **(existing)** | Plain-English explanation of each finished feature |
 
 ## How we work

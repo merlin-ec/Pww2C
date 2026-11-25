@@ -2,7 +2,7 @@
 
 The agents' working board. Tom's plain-English version is `TOM.md`.
 
-**Last updated:** 18 Nov 2026
+**Last updated:** 24 Nov 2026
 
 ## In progress (claims)
 
@@ -20,13 +20,12 @@ Tasks ready to build, in order. `/plan-phase` writes them; `/start next` takes t
 |---|---|---|---|---|---|
 | 1 | Update pass item 1: patch updates (see *Update pass*) | n/a | `package.json`, `package-lock.json` | none | No (touches `package.json`) |
 | 2 | Update pass item 2: `npm audit fix` for dev tools (no `--force`) | n/a | `package-lock.json` | 1 | No |
-| 3 | Fill `design.md` → *Tokens* from `src/app/globals.css` | n/a | `docs/design.md` | none | Yes |
+| 3 | Emerald + brass palette: propose emerald values for the velvet/curtain/plush/seam tokens in `src/app/globals.css` (keep brass), check WCAG AA contrast, fill `design.md` → *Tokens*, screenshot desktop + phone for Tom in the PR | n/a | `src/app/globals.css`, `docs/design.md` | none | Yes |
 
 ## Blocked
 
 | What | Blocked on | Since |
 |---|---|---|
-| Look of new screens | Tom's design direction (`open-questions.md` #10); until then keep theatre lobby | 18 Nov 2026 |
 | Live TMDB data | TMDB read token not in Vercel yet | 3 Nov 2026 |
 | Vercel project | Tom to set up (`setup.md`); needs the TMDB token | 3 Nov 2026 |
 

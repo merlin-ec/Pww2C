@@ -1,6 +1,6 @@
 # Workflow
 
-**Last updated:** 18 Nov 2026
+**Last updated:** 24 Nov 2026
 
 How work moves from idea to production, especially when several agents work in parallel.
 
@@ -18,7 +18,7 @@ Tom starts agents from the **Claude app → Code** tab on his phone (or claude.a
 
 | Where | Pick in the Code tab | Good for | Needs |
 |---|---|---|---|
-| **Cloud** | the `merlin-ec/Pww2C` repo | Most work. Runs on Anthropic's machines, so Tom's laptop can be off. Several at once. | GitHub access (done). Cloud environment setup script `npm ci` |
+| **Cloud** | the `merlin-ec/Pww2C` repo | Most work. Runs on Anthropic's machines, so Tom's laptop can be off. Several at once. | GitHub access (done). Packages install themselves: see the SessionStart hook below |
 | **Tom's laptop** | the **PWW (laptop)** session | Anything that needs local tools or logins (e.g. the Supabase CLI) | Laptop on and online; `~/Downloads/connect-claude.sh` has been run |
 
 What to type:
@@ -31,6 +31,7 @@ What to type:
 What's in `.claude/` and why:
 
 - **`settings.json`** lets agents run checks, commit, push their own branch and open PRs without asking. Installing packages, rebasing, merging and the Supabase CLI always ask. Pushing to `main`, force-pushing, `rm -rf` and reading `.env` files are blocked. These rules aren't a security boundary; branch protection on `main` is.
+- **The SessionStart hook** in `settings.json` runs `scripts/install_pkgs.sh` when a session starts or resumes. On cloud machines it runs `npm ci`, skipping it when `package.json`, `package-lock.json` and the script are unchanged since the last install (about 20 s the first time, instant after). On Tom's laptop it does nothing. If the install fails, the session still starts and `npm run check` fails, so run `npm ci` yourself.
 - **`reviewer`** reviews every branch before its PR, independently of the agent that wrote it.
 - **`db-migrator`** owns every schema change and follows `database.md`.
 
