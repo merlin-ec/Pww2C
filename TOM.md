@@ -2,13 +2,13 @@
 
 **For Tom.** This is the one page to read. Agents rewrite it at the end of every session, in plain English. The technical detail lives in `docs/`.
 
-**Last updated:** 18 Nov 2026, by Claude (agent kit session)
+**Last updated:** 24 Nov 2026, by Claude (install hook session)
 
 ---
 
 ## In one line
 
-Your ChatGPT prototype is now the product reference: its features are written into every phase plan, its look isn't. Your laptop is connected, so you can run agents on it from your phone. Next: pick a design direction, then the update pass and the first live version.
+Design direction chosen: emerald and brass. Cloud agents now install the app's packages themselves. Next: the package updates, the emerald colours, then the first live version.
 
 ## Start building from your phone
 
@@ -26,8 +26,8 @@ Most important first. Agents add to this list and never remove an item until it'
 
 | # | What | Why it matters | How |
 |---|---|---|---|
-| 0 | **Finish the agent setup** | Three one-time steps so cloud agents can build and can't skip review. | 1. Merge PR #4 in the GitHub app. 2. claude.ai/code → environment settings → setup script `npm ci`. 3. GitHub → Pww2C → Settings → Branches → add a rule for `main`: require a pull request and passing checks. |
-| 1 | **Pick a design direction** | You don't like the prototype's look. Every new screen needs a direction. Until you choose, agents keep the current dark "theatre lobby" look. | Tell Claude: keep theatre lobby, or describe or show a look you like (`open-questions.md` #10). |
+| 0 | **Protect `main`** | So agents can't skip review. (PR #4 is merged, and the setup-script step is no longer needed: this session's PR installs packages automatically.) | GitHub → Pww2C → Settings → Branches → add a rule for `main`: require a pull request and passing checks. |
+| 1 | **Merge the install-hook PR** | Cloud agents install packages themselves once it's in. It also records emerald and brass as your design direction. | Review and merge it in the GitHub app. |
 | 2 | **Skim the phase plans** | They're now filled in from your prototype. Anything that's wrong is cheapest to fix now. | `docs/specs/01`–`06`; items marked *(prototype)*. Say if any prototype extras should wait (#11). |
 | 3 | **Get a TMDB token** | The app can't load any films without it. | themoviedb.org → Settings → API → copy the long *API Read Access Token*. Put it straight into Vercel, never into a chat. |
 | 4 | **Set up Vercel** | This is what puts the site online. | Steps are in `docs/setup.md`. |
@@ -36,13 +36,18 @@ Most important first. Agents add to this list and never remove an item until it'
 
 These are copied from `docs/open-questions.md`, and only the ones that are blocking work appear here.
 
-- **Design direction** (#10): keep the theatre-lobby look or go somewhere new. Blocks the look of phase 1 screens.
 - **Public or private by default** (#4): the prototype suggests collections private until shared, and reviews visible to the community. Confirm before phase 1–2.
 - Coming up later: **whether PWW will ever make money**, because that changes which TMDB and Vercel terms apply. It's needed before launch (phase 7).
 
 ## What happened recently
 
 Newest first. Each session gets a few lines here, and the full detail goes in `docs/handoff.md`.
+
+**24 Nov 2026: Packages install themselves; emerald and brass**
+- Cloud agents now install the app's packages when a session starts, using a script kept in the code, so you don't need the claude.ai setup-script step. The first start takes about 20 seconds, and later starts skip the install.
+- Your design direction is written down: dark emerald in place of the velvet red, with brass kept as the accent. No colours have changed yet. The next design task will propose the exact shades and show you screenshots in its pull request.
+- The package updates you asked for with `/start next` didn't happen. This session finished the install script instead (you chose that), so they're still top of the list.
+- Nothing in the app changed.
 
 **18 Nov 2026 (evening): Agents ready to build**
 - Added the agent kit: type `/start next` from your phone and an agent picks the next task, builds it, has a second agent review it, updates the docs and opens a pull request.
@@ -66,11 +71,6 @@ Newest first. Each session gets a few lines here, and the full detail goes in `d
 - Added the rulebook agents read before they touch anything (`CLAUDE.md`), this page, and docs for security, workflow, testing, costs and each upcoming feature.
 - Found that the database had paused itself, and that Claude couldn't see the GitHub repo yet.
 - Nothing in the app changed.
-
-**3 Nov 2026: Foundations built**
-- Sign up, log in, password reset, account deletion, search, trending, and film/TV pages with where-to-watch.
-- 18 logic tests and 18 database security tests pass. Supabase's security checker reports no problems.
-- The "theatre lobby" look: dark, with a backlit marquee for titles.
 
 ## Try it yourself
 

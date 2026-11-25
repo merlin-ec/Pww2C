@@ -1,6 +1,6 @@
 # Session handoffs
 
-**Last updated:** 18 Nov 2026
+**Last updated:** 24 Nov 2026
 
 One entry per session, **newest first**. Agents write here at the end of every session. Write it so the next agent (or Tom) can continue without reading the chat.
 
@@ -31,6 +31,48 @@ One entry per session, **newest first**. Agents write here at the end of every s
 **Next step**
 - …
 ```
+
+---
+
+## 2026-11-24: Cloud install hook; emerald + brass direction
+**Agent/session:** Claude Code cloud session  ·  **Branch/PR:** `docs/emerald-brass-and-install-hook` / see GitHub  ·  **Spec:** n/a
+
+**Done**
+- Tom typed `/start next` (Next up #1, patch updates), but the session's branch already had someone else's uncommitted SessionStart hook. I asked, and Tom chose to finish the hook. Next up #1 is still next.
+- `.claude/settings.json` → `SessionStart` (matcher `startup|resume`) runs `scripts/install_pkgs.sh`. It does nothing unless `CLAUDE_CODE_REMOTE=true`. Otherwise it runs `npm ci --no-audit --no-fund` and records the sha256 of the script, `package.json` and `package-lock.json` in `node_modules/.install_pkgs.sha256`, then skips while they match. It always exits 0. My changes to it:
+  - npm's output now goes to stderr, because a SessionStart hook's stdout is added to the agent's context.
+  - After the `reviewer` agent's review:
+    - `--ignore-scripts`. The only lockfile package with an install script is macOS-only `fsevents`.
+    - The Node version is now part of the hash.
+    - A failed `cd` now exits 0.
+    - The hook has a 300 s `timeout`.
+    - The script is executable.
+    - A new `security.md` → *Dependencies* entry.
+- Tested here: with the variable unset it exits at once; the first cloud run took 19 s with 0 bytes on stdout; the second took 0.01 s. `npm run check` and `npm run build` pass on the `--ignore-scripts` install.
+- Tom confirmed the branch name's "emerald brass" is his design direction (open question #10). I recorded it in `decisions.md` → *Design*, `open-questions.md` (answered), `design.md` and `docs/README.md`, and removed the *Blocked: look of new screens* row from `status.md`. Next up #3 now proposes the emerald colours.
+- `.gitignore`: added `.claude/worktrees/`. A session worktree was nearly committed as an embedded repo.
+
+**Changed files / migrations**
+- `.claude/settings.json`, `scripts/install_pkgs.sh` (new), `.gitignore`, `CLAUDE.md` (*Where things live*), `docs/security.md`, `docs/decisions.md`, `docs/handoff.md`, `docs/design.md`, `docs/open-questions.md`, `docs/README.md`, `docs/status.md`, `docs/workflow.md`, `TOM.md`. No app code or schema.
+
+**Decisions made** (also added to decisions.md)
+- Install packages with a repo hook rather than a claude.ai environment setup script.
+- Emerald and brass, keeping dark-only, the marquee and the fonts. Exact values aren't chosen.
+
+**Not done / skipped, and why**
+- No colour changes. Tom named a direction, not values, so a separate PR proposes values with screenshots.
+- `npm run test:db` not run: nothing touched the database.
+- Reviewer nits left for the palette PR: the "dark, warm" wording in `design.md` (emerald is a cool colour).
+
+**Risks or things that look wrong**
+- The hook only takes effect for sessions whose checkout includes it, so it starts working once this PR merges.
+- `npm ci` needs the npm registry, which cloud environments allow by default.
+
+**Tom should check**
+- `TOM.md` → *Needs you* #0: step 2 (setup script) is gone.
+
+**Next step**
+- Next up #1 (patch updates), or #3 (emerald palette), which can run in parallel.
 
 ---
 

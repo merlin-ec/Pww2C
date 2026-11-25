@@ -10,7 +10,6 @@ Claim a row **before** you start. Remove it when the PR merges or you hand off. 
 
 | Task | Spec | Branch | Files / areas touched | Claimed | By |
 |---|---|---|---|---|---|
-| Cloud install hook; record emerald + brass direction | n/a | `docs/emerald-brass-and-install-hook` | `.claude/settings.json`, `scripts/install_pkgs.sh`, `docs/design.md`, `docs/decisions.md`, `docs/open-questions.md`, `docs/workflow.md`, `CLAUDE.md`, `TOM.md` | 24 Nov 2026 | Claude (cloud session) |
 
 ## Next up
 
@@ -20,7 +19,7 @@ Tasks ready to build, in order. `/plan-phase` writes them; `/start next` takes t
 |---|---|---|---|---|---|
 | 1 | Update pass item 1: patch updates (see *Update pass*) | n/a | `package.json`, `package-lock.json` | none | No (touches `package.json`) |
 | 2 | Update pass item 2: `npm audit fix` for dev tools (no `--force`) | n/a | `package-lock.json` | 1 | No |
-| 3 | Emerald + brass palette: propose emerald values for the velvet/curtain/plush/seam tokens in `src/app/globals.css` (keep brass), check WCAG AA contrast, fill `design.md` → *Tokens*, screenshot desktop + phone for Tom in the PR | n/a | `src/app/globals.css`, `docs/design.md` | none | Yes |
+| 3 | Emerald + brass palette: propose emerald values for the velvet/curtain/plush/seam tokens in `src/app/globals.css` (keep brass). Also recheck `marquee-ink` (velvet red, used as text), `program` and `go` (green on emerald) for WCAG AA contrast. Decide whether to rename the tokens (used in components, e.g. `from-velvet/30`) and log it in `decisions.md`. fill `design.md` → *Tokens*, screenshot desktop + phone for Tom in the PR | n/a | `src/app/globals.css`, `docs/design.md` | none | Yes |
 
 ## Blocked
 

@@ -47,4 +47,4 @@ One line per decision, newest at the bottom of each section. If you change one, 
 
 ## Design (24 Nov 2026)
 
-- **Design direction: emerald and brass (Tom, 24 Nov; answers `open-questions.md` #10).** It replaces the velvet-red base of the theatre lobby with dark emerald and keeps brass as the accent. Still dark only, still the backlit marquee and the self-hosted fonts, since Tom named a palette, not a new layout. The exact colour values aren't chosen yet: the next design task proposes them in `globals.css` and `design.md` with contrast checked, and Tom sees them in that PR.
+- **Design direction: emerald and brass (Tom, 24 Nov; answers `open-questions.md` #10).** It replaces the velvet-red base of the theatre lobby with dark emerald and keeps brass as the accent. Tom named a palette, not a new layout, so agents read it as: still dark only, still the backlit marquee and the self-hosted fonts. That reading is the agent's, not Tom's; he can correct it in the palette PR. The exact colour values aren't chosen yet: the next design task proposes them in `globals.css` and `design.md` with contrast checked, and Tom sees them in that PR.

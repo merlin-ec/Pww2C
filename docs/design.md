@@ -2,7 +2,7 @@
 
 **Last updated:** 24 Nov 2026
 
-> **Direction: emerald and brass (Tom, 24 Nov; `decisions.md` → *Design*).** Dark emerald replaces the velvet red; brass stays the accent. The exact colour values aren't chosen yet (`status.md` → *Next up*). Until that PR merges, the code still uses the velvet palette below. Don't copy the 18 Nov prototype's look: use it only for features and flows (`product.md` → *Prototype*).
+> **Direction: emerald and brass (Tom, 24 Nov; `decisions.md` → *Design*).** Dark emerald replaces the velvet red; brass stays the accent. The exact colour values aren't chosen yet (`status.md` → *Next up*). Until that PR merges, the code still uses the Foundations velvet palette in `src/app/globals.css` (`@theme`). Don't copy the 18 Nov prototype's look: use it only for features and flows (`product.md` → *Prototype*).
 
 ## The look: "theatre lobby", in emerald and brass
 
