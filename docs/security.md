@@ -1,6 +1,6 @@
 # Security
 
-**Last updated:** 17 Nov 2026
+**Last updated:** 24 Nov 2026
 
 What we protect, from whom, and the rules that do it. Every agent follows this. If a rule here conflicts with getting a feature done, the rule wins; raise it in `open-questions.md`.
 
@@ -62,6 +62,7 @@ What we protect, from whom, and the rules that do it. Every agent follows this. 
 
 - Add a dependency only when it saves real work, and say why in the PR.
 - Commit the lockfile. Review `npm audit` output at each phase end.
+- **Cloud sessions install packages without asking.** The SessionStart hook in `.claude/settings.json` runs `scripts/install_pkgs.sh` at every cloud session start and resume, before the agent reads anything. That script runs `npm ci --ignore-scripts`, so packages' own install scripts don't run. It trusts whatever branch is checked out, including a branch an agent is only reviewing. So review changes to the hook, `install_pkgs.sh` or `package-lock.json` like code, and drop `--ignore-scripts` only in a PR that says which package needs it and why.
 
 ## Agent rules (summary)
 

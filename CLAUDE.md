@@ -1,6 +1,6 @@
 # CLAUDE.md: rules for agents working on PWW
 
-**Last updated:** 18 Nov 2026
+**Last updated:** 24 Nov 2026
 
 PWW (Prestige World Wide) is a film and TV taste, tracking and recommendation web app. Owner: Tom. He has said "build freely, no check-ins needed, but nothing reckless." This file defines what "reckless" means.
 
@@ -53,7 +53,8 @@ supabase/templates  auth email templates
 tests/unit          logic tests
 tests/db            RLS tests on real Postgres (harness.ts, supabase-stub.sql)
 docs/               see docs/README.md for the map
-.claude/settings.json  permissions: what agents may do without asking, what always asks, what's blocked
+scripts/            docs-check.sh (CI docs rule); install_pkgs.sh (cloud sessions: npm ci at start)
+.claude/settings.json  permissions (allowed, always asks, blocked) + the SessionStart hook that runs install_pkgs.sh
 .claude/agents/     reviewer (runs before every PR), db-migrator (every schema change)
 .claude/skills/     /start, /finish, /plan-phase
 ```

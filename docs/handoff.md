@@ -1,6 +1,6 @@
 # Session handoffs
 
-**Last updated:** 24 Nov 2026
+**Last updated:** 25 Nov 2026
 
 One entry per session, **newest first**. Agents write here at the end of every session. Write it so the next agent (or Tom) can continue without reading the chat.
 
@@ -34,8 +34,50 @@ One entry per session, **newest first**. Agents write here at the end of every s
 
 ---
 
+## 2026-11-25: Emerald + brass palette
+**Agent/session:** Claude Code session  ·  **Branch/PR:** `feat/emerald-palette`, which includes all of `docs/emerald-brass-and-install-hook` / see GitHub  ·  **Spec:** n/a (`design.md`)
+
+**Done**
+- `src/app/globals.css` tokens:
+  - velvet `#0b1a14`, curtain `#11241c`, plush `#183126`, seam `#2c4a3c`
+  - marquee-ink `#0b1a14`
+  - exit `#e5534b` → `#eb5f56`, plus its rgb hover tint
+  - placeholder opacity 0.7 → 0.85
+- `src/app/layout.tsx`: `themeColor` updated to match velvet.
+- Contrast: every text colour is WCAG AA on the backgrounds it's used on. The exception is `exit` on plush (4.2), which nothing uses; `design.md` says not to. The ratios are in `design.md` → *Tokens*; the script was a throwaway in the session scratchpad.
+- `design.md`: *Tokens* filled in (it was a TODO), and the direction note updated. `decisions.md`: the emerald values and keeping the token names.
+- Screenshots of `/`, `/login`, `/signup` and `/search` at 1280×900 and 390×844, before and after, taken with headless Firefox. Side-by-side images are in `docs/design/` (desktop: home and sign-up; phone: home and log-in).
+
+**Changed files / migrations**
+- `src/app/globals.css`, `src/app/layout.tsx`, `docs/design.md`, `docs/design/*.png`, `docs/decisions.md`, `docs/status.md`, `docs/handoff.md`, `TOM.md`, `CHANGELOG.md`. No schema.
+
+**Decisions made** (also added to decisions.md)
+- Deep, low-saturation emerald, as dark as the velvet it replaces. This is the agent's proposal and Tom judges it in the PR.
+- Token names kept: they're fabrics, not colours.
+
+**Not done / skipped, and why**
+- Title pages, account pages and poster grids weren't seen: there's no TMDB token, and nobody can sign in here. They use the same tokens, so they change the same way.
+- Playwright isn't installed on this machine (it's Tom's laptop session, not the cloud image), so I used snap Firefox's `--screenshot`.
+- `npm run test:db` not run: no database change.
+
+**Risks or things that look wrong**
+- After PR #5 (package updates) merged on 25 Nov, `origin/main` was merged into this branch, and the conflicts in `status.md`, `handoff.md` and `TOM.md` were resolved. The install-hook branch is checked out in another session's locked worktree, so it couldn't be updated. This PR carries its commits instead, and merging it closes that PR too.
+- `seam` borders are 1.8:1 on velvet. The old ones were 1.5:1, so this is no worse. Fine for decorative lines, but input boundaries rely on the plush fill rather than the border.
+
+- The email templates still use the old velvet colour for button text. Not changed, because email changes need Tom (`design.md` notes it).
+- Claim row removed at finish, per `/finish`; *Next up* #3 says "PR open" until it merges.
+
+**Tom should check**
+- The before/after images. Is the green right?
+- Whether the confirmation and password-reset emails should switch to the emerald colour too.
+
+**Next step**
+- Update pass #2 after the package-updates PR merges, or `/plan-phase 1`.
+
+---
+
 ## 2026-11-24: Update pass #1, patch/minor updates
-**Agent/session:** Claude Code cloud session  ·  **Branch/PR:** `chore/patch-updates` / see GitHub  ·  **Spec:** n/a
+**Agent/session:** Claude Code session (Tom's laptop)  ·  **Branch/PR:** `chore/patch-updates` / PR #5, merged 25 Nov  ·  **Spec:** n/a
 
 **Done**
 - `next` + `eslint-config-next` 16.4.5 → 16.4.6 and `react`/`react-dom` 19.3.0 → 19.3.1, all still exact-pinned.
@@ -55,7 +97,7 @@ One entry per session, **newest first**. Agents write here at the end of every s
 - None. TypeScript 7, ESLint 10 and `@types/node` 26 stay out, per *Update pass* #3.
 
 **Not done / skipped, and why**
-- `npm run test:db`: no Postgres in this cloud session. CI runs it on the PR. No database code or `pg` version changed.
+- `npm run test:db`: no Postgres on this machine. CI runs it on the PR. No database code or `pg` version changed.
 - Not checked in a browser at phone width: no UI changed.
 
 **Risks or things that look wrong**
@@ -66,6 +108,48 @@ One entry per session, **newest first**. Agents write here at the end of every s
 
 **Next step**
 - Update pass #2 (`npm audit fix`, no `--force`) once this merges.
+
+---
+
+## 2026-11-24: Cloud install hook; emerald + brass direction
+**Agent/session:** Claude Code cloud session  ·  **Branch/PR:** `docs/emerald-brass-and-install-hook` / see GitHub  ·  **Spec:** n/a
+
+**Done**
+- Tom typed `/start next` (Next up #1, patch updates), but the session's branch already had someone else's uncommitted SessionStart hook. I asked, and Tom chose to finish the hook. Next up #1 is still next.
+- `.claude/settings.json` → `SessionStart` (matcher `startup|resume`) runs `scripts/install_pkgs.sh`. It does nothing unless `CLAUDE_CODE_REMOTE=true`. Otherwise it runs `npm ci --no-audit --no-fund` and records the sha256 of the script, `package.json` and `package-lock.json` in `node_modules/.install_pkgs.sha256`, then skips while they match. It always exits 0. My changes to it:
+  - npm's output now goes to stderr, because a SessionStart hook's stdout is added to the agent's context.
+  - After the `reviewer` agent's review:
+    - `--ignore-scripts`. The only lockfile package with an install script is macOS-only `fsevents`.
+    - The Node version is now part of the hash.
+    - A failed `cd` now exits 0.
+    - The hook has a 300 s `timeout`.
+    - The script is executable.
+    - A new `security.md` → *Dependencies* entry.
+- Tested here: with the variable unset it exits at once; the first cloud run took 19 s with 0 bytes on stdout; the second took 0.01 s. `npm run check` and `npm run build` pass on the `--ignore-scripts` install.
+- Tom confirmed the branch name's "emerald brass" is his design direction (open question #10). I recorded it in `decisions.md` → *Design*, `open-questions.md` (answered), `design.md` and `docs/README.md`, and removed the *Blocked: look of new screens* row from `status.md`. Next up #3 now proposes the emerald colours.
+- `.gitignore`: added `.claude/worktrees/`. A session worktree was nearly committed as an embedded repo.
+
+**Changed files / migrations**
+- `.claude/settings.json`, `scripts/install_pkgs.sh` (new), `.gitignore`, `CLAUDE.md` (*Where things live*), `docs/security.md`, `docs/decisions.md`, `docs/handoff.md`, `docs/design.md`, `docs/open-questions.md`, `docs/README.md`, `docs/status.md`, `docs/workflow.md`, `TOM.md`. No app code or schema.
+
+**Decisions made** (also added to decisions.md)
+- Install packages with a repo hook rather than a claude.ai environment setup script.
+- Emerald and brass, keeping dark-only, the marquee and the fonts. Exact values aren't chosen.
+
+**Not done / skipped, and why**
+- No colour changes. Tom named a direction, not values, so a separate PR proposes values with screenshots.
+- `npm run test:db` not run: nothing touched the database.
+- Reviewer nits left for the palette PR: the "dark, warm" wording in `design.md` (emerald is a cool colour).
+
+**Risks or things that look wrong**
+- The hook only takes effect for sessions whose checkout includes it, so it starts working once this PR merges.
+- `npm ci` needs the npm registry, which cloud environments allow by default.
+
+**Tom should check**
+- `TOM.md` → *Needs you* #0: step 2 (setup script) is gone.
+
+**Next step**
+- Next up #1 (patch updates), or #3 (emerald palette), which can run in parallel.
 
 ---
 
