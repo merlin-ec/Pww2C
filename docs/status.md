@@ -17,9 +17,8 @@ Tasks ready to build, in order. `/plan-phase` writes them; `/start next` takes t
 
 | # | Task | Spec criteria | Files / areas | Depends on | Parallel-safe |
 |---|---|---|---|---|---|
-| 1 | Update pass item 1: patch updates (see *Update pass*) | n/a | `package.json`, `package-lock.json` | none | No (touches `package.json`) |
-| 2 | Update pass item 2: `npm audit fix` for dev tools (no `--force`) | n/a | `package-lock.json` | 1 | No |
-| 3 | Emerald + brass palette. **Built, PR open** on `feat/emerald-palette` (stacked on the install-hook PR) | n/a | `src/app/globals.css`, `src/app/layout.tsx`, `docs/design.md` | install-hook PR | Yes |
+| 1 | Emerald + brass palette and the cloud install hook. **Built, PR open** on `feat/emerald-palette`, which includes all of `docs/emerald-brass-and-install-hook`, so merging it closes both | n/a | `src/app/globals.css`, `src/app/layout.tsx`, `.claude/settings.json`, `scripts/install_pkgs.sh`, docs | none | Yes |
+| 2 | Update pass item 2: `npm audit fix` for dev tools (no `--force`) | n/a | `package-lock.json` | none (item 1 merged in PR #5) | No |
 
 ## Blocked
 
@@ -61,8 +60,8 @@ Checked on 18 Nov 2026 against the Foundations baseline (`3933a2c`). Work top to
 
 | # | Item | Detail | Risk |
 |---|---|---|---|
-| 1 | Patch/minor updates | `next` + `eslint-config-next` 16.4.5 → 16.4.6 · `react`/`react-dom` 19.3.0 → 19.3.1 · `@supabase/supabase-js` 2.118 → 2.119 · `tailwindcss` + `@tailwindcss/turbopack` 4.3.4 → 4.3.5 · `supabase` CLI 3.0 → 3.2 | Low. Serial-only (touches `package.json`) |
-| 2 | Dev-tool vulnerabilities | 17 (11 high, 6 moderate), all dev-only: picomatch/minimatch ReDoS via `eslint-config-next`, `typescript-eslint` and `vitest`/`vite`. Run `npm audit fix` (no `--force`: it would downgrade `eslint-config-next` to 14). The rest waits on upstream releases | Low (not shipped) |
+| 1 | ~~Patch/minor updates~~ | Done 24 Nov on `chore/patch-updates`: `next` + `eslint-config-next` 16.4.6, `react`/`react-dom` 19.3.1, `@supabase/supabase-js` 2.119.2, `tailwindcss` + `@tailwindcss/turbopack` 4.3.5, `supabase` CLI 3.4.0, `@types/react` 19.3.1, `vitest` 5.1.1 | Done (PR #5, merged 25 Nov) |
+| 2 | Dev-tool vulnerabilities | Was 17 (11 high, 6 moderate). After item 1 (24 Nov): **7 moderate, 0 high**, all dev-only (minimatch ReDoS via `eslint-config-next`, `typescript-eslint` and `vitest`/`vite`). Run `npm audit fix` (no `--force`: it would downgrade `eslint-config-next` to 14). The rest waits on upstream releases | Low (not shipped) |
 | 3 | Major upgrades, decide later | TypeScript 5.9 → 7.0 (native compiler) and ESLint 9 → 10: wait for Next.js 16 support. Keep `@types/node` on 22 to match the Node 22 runtime | Medium. Needs a `decisions.md` entry |
 | 4 | ~~Live schema check~~ | Done 18 Nov: checksums match, security advisor clean | Done |
 | 5 | Deploy | Vercel project, env vars, TMDB token (`setup.md`) | Blocked on Tom |

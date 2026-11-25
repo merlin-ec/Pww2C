@@ -35,7 +35,7 @@ One entry per session, **newest first**. Agents write here at the end of every s
 ---
 
 ## 2026-11-25: Emerald + brass palette
-**Agent/session:** Claude Code session  ·  **Branch/PR:** `feat/emerald-palette`, stacked on `docs/emerald-brass-and-install-hook` / see GitHub  ·  **Spec:** n/a (`design.md`)
+**Agent/session:** Claude Code session  ·  **Branch/PR:** `feat/emerald-palette`, which includes all of `docs/emerald-brass-and-install-hook` / see GitHub  ·  **Spec:** n/a (`design.md`)
 
 **Done**
 - `src/app/globals.css` tokens:
@@ -61,7 +61,7 @@ One entry per session, **newest first**. Agents write here at the end of every s
 - `npm run test:db` not run: no database change.
 
 **Risks or things that look wrong**
-- The PR is stacked: merge the install-hook PR first, or this PR's diff will include that work too.
+- After PR #5 (package updates) merged on 25 Nov, `origin/main` was merged into this branch, and the conflicts in `status.md`, `handoff.md` and `TOM.md` were resolved. The install-hook branch is checked out in another session's locked worktree, so it couldn't be updated. This PR carries its commits instead, and merging it closes that PR too.
 - `seam` borders are 1.8:1 on velvet. The old ones were 1.5:1, so this is no worse. Fine for decorative lines, but input boundaries rely on the plush fill rather than the border.
 
 - The email templates still use the old velvet colour for button text. Not changed, because email changes need Tom (`design.md` notes it).
@@ -73,6 +73,41 @@ One entry per session, **newest first**. Agents write here at the end of every s
 
 **Next step**
 - Update pass #2 after the package-updates PR merges, or `/plan-phase 1`.
+
+---
+
+## 2026-11-24: Update pass #1, patch/minor updates
+**Agent/session:** Claude Code session (Tom's laptop)  ·  **Branch/PR:** `chore/patch-updates` / PR #5, merged 25 Nov  ·  **Spec:** n/a
+
+**Done**
+- `next` + `eslint-config-next` 16.4.5 → 16.4.6 and `react`/`react-dom` 19.3.0 → 19.3.1, all still exact-pinned.
+- Floors raised: `@supabase/supabase-js` ^2.119.2, `supabase` CLI ^3.4.0 (the plan said 3.2, but 3.4 is the newest minor), `tailwindcss` + `@tailwindcss/turbopack` ^4.3.5, `@types/react` ^19.3.1, `vitest` ^5.1.1.
+- Results:
+  - `npm run check` (18 tests) and `npm run build` pass.
+  - `npm audit --omit=dev`: 0 vulnerabilities.
+  - Full `npm audit`: 7 moderate, down from 17 (11 high). Update pass #2 is smaller now.
+  - `next start` smoke test: `/`, `/search`, `/login` and `/auth/error` all return 200 (no TMDB token here, so no live titles).
+- Removed the stale `chore/agent-kit` claim (PR #4 merged).
+- The lockfile was generated with npm 10.9.4, the npm that ships with Node 22 (CI and Vercel). This cloud machine has Node 24 and npm 11, whose first attempt dropped two optional WebAssembly entries (`@emnapi/runtime`, `@emnapi/core`); the reviewer caught it. The checks above were re-run after a clean `npm ci` from the final lockfile.
+
+**Changed files / migrations**
+- `package.json`, `package-lock.json`, `docs/status.md`, `docs/handoff.md`, `TOM.md`. No schema.
+
+**Decisions made**
+- None. TypeScript 7, ESLint 10 and `@types/node` 26 stay out, per *Update pass* #3.
+
+**Not done / skipped, and why**
+- `npm run test:db`: no Postgres on this machine. CI runs it on the PR. No database code or `pg` version changed.
+- Not checked in a browser at phone width: no UI changed.
+
+**Risks or things that look wrong**
+- This branch and `docs/emerald-brass-and-install-hook` (PR open, unmerged) both edit `docs/status.md`, `docs/handoff.md` and `TOM.md`. Whichever merges second needs a small merge of those three files.
+
+**Tom should check**
+- Nothing beyond reviewing the PR.
+
+**Next step**
+- Update pass #2 (`npm audit fix`, no `--force`) once this merges.
 
 ---
 

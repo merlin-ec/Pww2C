@@ -2,13 +2,13 @@
 
 **For Tom.** This is the one page to read. Agents rewrite it at the end of every session, in plain English. The technical detail lives in `docs/`.
 
-**Last updated:** 25 Nov 2026, by Claude (emerald palette session)
+**Last updated:** 25 Nov 2026, by Claude (emerald palette session, merged with main)
 
 ---
 
 ## In one line
 
-Three pull requests are waiting for you: cloud agents installing packages themselves, small package updates, and the new emerald look. After those: the TMDB token and Vercel, so the site can go live.
+The package updates are in. One pull request is left: the new emerald look, which also carries the install hook. After that: the TMDB token and Vercel, so the site can go live.
 
 ## Start building from your phone
 
@@ -26,9 +26,8 @@ Most important first. Agents add to this list and never remove an item until it'
 
 | # | What | Why it matters | How |
 |---|---|---|---|
-| 0 | **Protect `main`** | So agents can't skip review. (PR #4 is merged, and the setup-script step is no longer needed: this session's PR installs packages automatically.) | GitHub → Pww2C → Settings → Branches → add a rule for `main`: require a pull request and passing checks. |
-| 1 | **Merge the install-hook PR** | Cloud agents install packages themselves once it's in. It also records emerald and brass as your design direction. | Review and merge it in the GitHub app. |
-| 1a | **Judge the emerald colours** | It's your look; the shades are the agent's proposal. | Open the emerald pull request and look at the before/after pictures (`docs/design/`). Merge it after the install-hook one, or say "lighter", "greener" or similar and an agent will adjust. |
+| 0 | **Protect `main`** | So agents can't skip review. (PR #4 is merged, and the claude.ai setup-script step isn't needed once the emerald pull request is in, because it brings the install hook with it.) | GitHub → Pww2C → Settings → Branches → add a rule for `main`: require a pull request and passing checks. |
+| 1 | **Judge and merge the emerald pull request** | It's your new look, and it also carries the install hook, so merging it closes the install-hook pull request too. The shades are the agent's proposal. | Look at the before/after pictures (`docs/design/` in the pull request), then merge it. Or say "lighter", "greener" or similar and an agent will adjust. |
 | 2 | **Skim the phase plans** | They're now filled in from your prototype. Anything that's wrong is cheapest to fix now. | `docs/specs/01`–`06`; items marked *(prototype)*. Say if any prototype extras should wait (#11). |
 | 3 | **Get a TMDB token** | The app can't load any films without it. | themoviedb.org → Settings → API → copy the long *API Read Access Token*. Put it straight into Vercel, never into a chat. |
 | 4 | **Set up Vercel** | This is what puts the site online. | Steps are in `docs/setup.md`. |
@@ -47,8 +46,14 @@ Newest first. Each session gets a few lines here, and the full detail goes in `d
 **25 Nov 2026: The emerald look**
 - The site's dark red background is now deep emerald green, with the brass buttons, ivory text and lit-up marquee unchanged. Before/after pictures for desktop and phone are in the pull request.
 - Every bit of text was rechecked for readability on the new green. The error red is a touch brighter and placeholder text a touch stronger, so both stay easy to read.
-- The exact shades are my proposal. Say if you want them lighter, greener or warmer. This pull request sits on top of the install-hook one, so merge that one first.
+- The exact shades are my proposal. Say if you want them lighter, greener or warmer. Merging this pull request also brings in the install-hook work, so it's the only one left to merge.
 - I couldn't check a film page, because the site can't load films until it has the TMDB token. Only the home, search, log-in and sign-up pages were checked.
+
+**24 Nov 2026: Small package updates**
+- Next.js, React, Supabase and Tailwind are on their latest minor fixes. The app builds, all tests pass, and the main pages load.
+- The developer-tool security issues dropped from 17 (11 serious) to 7 minor ones. None of them reach users.
+- Not run here: the database security tests, because the machine it ran on has no database. GitHub runs them on the pull request.
+- Merged as pull request #5.
 
 **24 Nov 2026: Packages install themselves; emerald and brass**
 - Cloud agents now install the app's packages when a session starts, using a script kept in the code, so you don't need the claude.ai setup-script step. The first start takes about 20 seconds, and later starts skip the install.
@@ -66,12 +71,6 @@ Newest first. Each session gets a few lines here, and the full detail goes in `d
 - Your laptop is connected: you can start Claude sessions on it from the Claude app's Code tab.
 - Went through every screen of your ChatGPT prototype and wrote what it does into the phase plans: half-star ratings and a watch diary, a 4-step taste quiz, "taste fit" scores, group picking with I'm in / Pass, a streaming rotation, taste-match and more.
 - The prototype is now the product reference for features, not for the look. Two questions answered (onboarding, export) and two new ones for you (design direction, prototype extras).
-- Nothing in the app changed.
-
-**18 Nov 2026: Code and docs on GitHub, docs always kept current**
-- Your new rule is in place. Every change updates its docs at the same time, GitHub checks this automatically and blocks changes that skip it, and every doc shows when it was last updated.
-- The app code and all the docs are saved on GitHub. The code and the docs each had their own rulebook for agents; they're now merged into one.
-- Checked the code: it still builds and passes all 36 tests and the security checks. A few packages are slightly behind, and some developer-only tools have known security issues that never reach users. Details are in *Update list* below.
 - Nothing in the app changed.
 
 ## Try it yourself
@@ -108,8 +107,8 @@ The full breakdown is in `docs/costs.md`. An agent must stop and ask you before 
 
 What the 18 Nov check found. Agents work through this from the top; the technical detail is in `docs/status.md` → *Update pass*.
 
-1. **Small package updates.** Next.js, React, Supabase and Tailwind each have a minor fix out. Low risk, one PR.
-2. **Developer-tool security issues.** 17 known issues in the tools used to lint and test the code. They never reach users, but they should be cleaned up. Part of this is a one-command fix; the rest waits on the tool makers.
+1. ~~Small package updates~~ Done, merged 25 Nov (pull request #5).
+2. **Developer-tool security issues.** Down to 7 minor issues in the tools used to lint and test the code. They never reach users. Part of this is a one-command fix; the rest waits on the tool makers.
 3. **Two big upgrades to decide on later:** TypeScript 7 and ESLint 10. Both are major versions, so they wait until Next.js supports them.
 4. ~~Database check~~ Done 18 Nov: the live database matches the code and the security checker is clean. One small speed fix (a missing index) is queued for the next database change.
 5. **Your changes.** The prototype is now in the plans; anything else you've changed goes to the top of this list.
