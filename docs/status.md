@@ -10,6 +10,7 @@ Claim a row **before** you start. Remove it when the PR merges or you hand off. 
 
 | Task | Spec | Branch | Files / areas touched | Claimed | By |
 |---|---|---|---|---|---|
+| Next up #3: emerald + brass palette | n/a | `feat/emerald-palette` (stacked on `docs/emerald-brass-and-install-hook`) | `src/app/globals.css`, `docs/design.md`, `docs/decisions.md` | 24 Nov 2026 | Claude (cloud session) |
 
 ## Next up
 
