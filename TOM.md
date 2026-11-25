@@ -2,7 +2,7 @@
 
 **For Tom.** This is the one page to read. Agents rewrite it at the end of every session, in plain English. The technical detail lives in `docs/`.
 
-**Last updated:** 18 Nov 2026, by Claude (agent kit session)
+**Last updated:** 24 Nov 2026, by Claude (package updates session)
 
 ---
 
@@ -26,7 +26,7 @@ Most important first. Agents add to this list and never remove an item until it'
 
 | # | What | Why it matters | How |
 |---|---|---|---|
-| 0 | **Finish the agent setup** | Three one-time steps so cloud agents can build and can't skip review. | 1. Merge PR #4 in the GitHub app. 2. claude.ai/code → environment settings → setup script `npm ci`. 3. GitHub → Pww2C → Settings → Branches → add a rule for `main`: require a pull request and passing checks. |
+| 0 | **Finish the agent setup** | Two one-time steps so cloud agents can build and can't skip review (PR #4 is merged). | 1. claude.ai/code → environment settings → setup script `npm ci` (not needed once the install-hook pull request is merged). 2. GitHub → Pww2C → Settings → Branches → add a rule for `main`: require a pull request and passing checks. |
 | 1 | **Pick a design direction** | You don't like the prototype's look. Every new screen needs a direction. Until you choose, agents keep the current dark "theatre lobby" look. | Tell Claude: keep theatre lobby, or describe or show a look you like (`open-questions.md` #10). |
 | 2 | **Skim the phase plans** | They're now filled in from your prototype. Anything that's wrong is cheapest to fix now. | `docs/specs/01`–`06`; items marked *(prototype)*. Say if any prototype extras should wait (#11). |
 | 3 | **Get a TMDB token** | The app can't load any films without it. | themoviedb.org → Settings → API → copy the long *API Read Access Token*. Put it straight into Vercel, never into a chat. |
@@ -43,6 +43,12 @@ These are copied from `docs/open-questions.md`, and only the ones that are block
 ## What happened recently
 
 Newest first. Each session gets a few lines here, and the full detail goes in `docs/handoff.md`.
+
+**24 Nov 2026: Small package updates**
+- Next.js, React, Supabase and Tailwind are on their latest minor fixes. The app builds, all tests pass, and the main pages load.
+- The developer-tool security issues dropped from 17 (11 serious) to 7 minor ones. None of them reach users.
+- Not run here: the database security tests, because this cloud machine has no database. GitHub runs them on the pull request.
+- This and the install-hook pull request both touch the same three docs. Merge either first; the second may need a small fix-up, which an agent can do.
 
 **18 Nov 2026 (evening): Agents ready to build**
 - Added the agent kit: type `/start next` from your phone and an agent picks the next task, builds it, has a second agent review it, updates the docs and opens a pull request.
@@ -66,11 +72,6 @@ Newest first. Each session gets a few lines here, and the full detail goes in `d
 - Added the rulebook agents read before they touch anything (`CLAUDE.md`), this page, and docs for security, workflow, testing, costs and each upcoming feature.
 - Found that the database had paused itself, and that Claude couldn't see the GitHub repo yet.
 - Nothing in the app changed.
-
-**3 Nov 2026: Foundations built**
-- Sign up, log in, password reset, account deletion, search, trending, and film/TV pages with where-to-watch.
-- 18 logic tests and 18 database security tests pass. Supabase's security checker reports no problems.
-- The "theatre lobby" look: dark, with a backlit marquee for titles.
 
 ## Try it yourself
 
@@ -106,8 +107,8 @@ The full breakdown is in `docs/costs.md`. An agent must stop and ask you before 
 
 What the 18 Nov check found. Agents work through this from the top; the technical detail is in `docs/status.md` → *Update pass*.
 
-1. **Small package updates.** Next.js, React, Supabase and Tailwind each have a minor fix out. Low risk, one PR.
-2. **Developer-tool security issues.** 17 known issues in the tools used to lint and test the code. They never reach users, but they should be cleaned up. Part of this is a one-command fix; the rest waits on the tool makers.
+1. ~~Small package updates~~ Done 24 Nov (pull request open).
+2. **Developer-tool security issues.** Down to 7 minor issues in the tools used to lint and test the code. They never reach users. Part of this is a one-command fix; the rest waits on the tool makers.
 3. **Two big upgrades to decide on later:** TypeScript 7 and ESLint 10. Both are major versions, so they wait until Next.js supports them.
 4. ~~Database check~~ Done 18 Nov: the live database matches the code and the security checker is clean. One small speed fix (a missing index) is queued for the next database change.
 5. **Your changes.** The prototype is now in the plans; anything else you've changed goes to the top of this list.

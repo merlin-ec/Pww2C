@@ -2,7 +2,7 @@
 
 The agents' working board. Tom's plain-English version is `TOM.md`.
 
-**Last updated:** 18 Nov 2026
+**Last updated:** 24 Nov 2026
 
 ## In progress (claims)
 
@@ -63,8 +63,8 @@ Checked on 18 Nov 2026 against the Foundations baseline (`3933a2c`). Work top to
 
 | # | Item | Detail | Risk |
 |---|---|---|---|
-| 1 | Patch/minor updates | `next` + `eslint-config-next` 16.4.5 → 16.4.6 · `react`/`react-dom` 19.3.0 → 19.3.1 · `@supabase/supabase-js` 2.118 → 2.119 · `tailwindcss` + `@tailwindcss/turbopack` 4.3.4 → 4.3.5 · `supabase` CLI 3.0 → 3.2 | Low. Serial-only (touches `package.json`) |
-| 2 | Dev-tool vulnerabilities | 17 (11 high, 6 moderate), all dev-only: picomatch/minimatch ReDoS via `eslint-config-next`, `typescript-eslint` and `vitest`/`vite`. Run `npm audit fix` (no `--force`: it would downgrade `eslint-config-next` to 14). The rest waits on upstream releases | Low (not shipped) |
+| 1 | ~~Patch/minor updates~~ | Done 24 Nov on `chore/patch-updates`: `next` + `eslint-config-next` 16.4.6, `react`/`react-dom` 19.3.1, `@supabase/supabase-js` 2.119.2, `tailwindcss` + `@tailwindcss/turbopack` 4.3.5, `supabase` CLI 3.4.0, `@types/react` 19.3.1, `vitest` 5.1.1 | Done (PR open) |
+| 2 | Dev-tool vulnerabilities | Was 17 (11 high, 6 moderate). After item 1 (24 Nov): **7 moderate, 0 high**, all dev-only (minimatch ReDoS via `eslint-config-next`, `typescript-eslint` and `vitest`/`vite`). Run `npm audit fix` (no `--force`: it would downgrade `eslint-config-next` to 14). The rest waits on upstream releases | Low (not shipped) |
 | 3 | Major upgrades, decide later | TypeScript 5.9 → 7.0 (native compiler) and ESLint 9 → 10: wait for Next.js 16 support. Keep `@types/node` on 22 to match the Node 22 runtime | Medium. Needs a `decisions.md` entry |
 | 4 | ~~Live schema check~~ | Done 18 Nov: checksums match, security advisor clean | Done |
 | 5 | Deploy | Vercel project, env vars, TMDB token (`setup.md`) | Blocked on Tom |
