@@ -10,7 +10,7 @@ Claim a row **before** you start. Remove it when the PR merges or you hand off. 
 
 | Task | Spec | Branch | Files / areas touched | Claimed | By |
 |---|---|---|---|---|---|
-| Prototype → specs, agent kit | n/a | `chore/agent-kit` | `docs/specs/01`–`06`, `docs/product.md`, `docs/design.md`, `docs/decisions.md`, `docs/open-questions.md`, `TOM.md`, `.claude/`, `CLAUDE.md`, `docs/workflow.md` | 18 Nov 2026 | Claude (claude.ai, PWW 2 project) |
+| Cloud install hook; record emerald + brass direction | n/a | `docs/emerald-brass-and-install-hook` | `.claude/settings.json`, `scripts/install_pkgs.sh`, `docs/design.md`, `docs/decisions.md`, `docs/open-questions.md`, `docs/workflow.md`, `CLAUDE.md`, `TOM.md` | 24 Nov 2026 | Claude (cloud session) |
 
 ## Next up
 
