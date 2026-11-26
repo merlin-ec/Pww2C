@@ -49,10 +49,11 @@ One entry per session, **newest first**. Agents write here at the end of every s
   - acceptance criteria extended (visibility, visitors, enforcement), each tagged with its task number
   - *Data changes* filled in, with one read rule `private.can_view()` that phase 6 extends
 - `status.md` → *Next up*: 7 tasks (1∥2 → 3 → 4a → 4b, with 5 alongside 4a/4b → 6). Phase 1 → Planned. Update pass #7 (provider index) folded into task 1. Removed the merged audit-fix row.
-- `decisions.md` → new *Phase 1* section (6 entries). `open-questions.md`: #4 and #5 answered, new #13 (guest reviews; default no). `glossary.md`: short thought, logged watch, watch diary, visibility; review redefined. Spec 06: the two later visibility levels.
+- `decisions.md` → new *Phase 1* section (9 entries). `open-questions.md`: #4 and #5 answered, new #13 (guests rating, logging or reviewing: phase 5 decides; no until then). `glossary.md`: short thought, logged watch, watch diary, visibility; review redefined. Spec 06: the two later visibility levels.
 - `setup.md`: repo name fixed (`Pww2C`, public), and the steps for protecting `main` added (the three CI check names; the docs job reports as `docs-check`).
 - The `reviewer` agent found 5 must-fixes in the first draft, all fixed:
-  - The review rate limit couldn't count edits. It now uses a `private.review_writes` event table.
+  - The review rate limit couldn't count edits. It now uses a `private.review_writes` event table, with RLS and revoked grants, as every table needs.
+  - A second review pass added the rule that functions and tables in `private` revoke public access, now that the schema is open to `anon` and `authenticated`.
   - RLS calling `private.can_view()` would fail without `usage` on the `private` schema. The grants are now spelled out.
   - "Guests can rate" contradicted `auth.md` and `security.md`. Guests now can't write in phase 1, and #13 moves to phase 5.
   - FKs and cascades were unspecified. Now `user_id` → `profiles` cascades, and `title_id` restricts.

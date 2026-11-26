@@ -80,7 +80,10 @@ Built in task 1 by the `db-migrator` agent (`database.md`).
 - **Review rate limit:**
   - Every insert and every update of `reviews` writes a row to `private.review_writes (user_id, written_at)`, via a trigger.
   - That trigger refuses the write if the member already has 20 rows in the last 24 hours, and deletes rows older than a day.
-  - The table lives in the `private` schema, which the API can't reach, so it needs no RLS policies. The trigger function is `security definer`.
+  - The table follows the rule for every table (RLS, explicit grants, tests), even in `private`:
+    - `alter table private.review_writes enable row level security`, with no policies
+    - `revoke all on private.review_writes from public, anon, authenticated`
+    - Only the `security definer` trigger function, running as the owner, writes to it.
   - Counting events (not reviews) means editing one review repeatedly, or deleting and re-adding it, still counts each time.
 - **Read rule:** one function, `private.can_view(owner uuid)`.
   - It returns true when `owner = auth.uid()` or the owner's visibility is `everyone`. Every select policy uses it, so phase 6 only changes this function.
@@ -88,6 +91,7 @@ Built in task 1 by the `db-migrator` agent (`database.md`).
   - RLS calls it as the querying role, and Foundations revoked everything on `private` from `public`. So the migration must:
     - `grant usage on schema private to anon, authenticated`
     - `revoke execute on function private.can_view(uuid) from public`, then `grant execute ... to anon, authenticated`
+  - Granting `usage` opens the `private` schema to those roles. So from now on, every function created in `private` must `revoke execute ... from public`, and every table in it needs RLS and revoked grants. Add this to `database.md`.
 - **Write rule:**
   - Insert, update and delete only your own rows (`user_id = auth.uid()`), and never as a guest (`(auth.jwt() ->> 'is_anonymous')::boolean` is not true).
   - Inserting a review also needs `profiles.username is not null`.
@@ -100,6 +104,7 @@ Built in task 1 by the `db-migrator` agent (`database.md`).
   - nobody else can read a *Private* member's rows
   - guests can't write
   - the 21st review write in 24 hours fails
+  - `anon` and `authenticated` can't select, insert or delete on `private.review_writes`
   - a `titles` row with ratings can't be deleted
 - Also in this migration: an index on `title_availability.provider_id` (update pass #7).
 
