@@ -10,7 +10,6 @@ Claim a row **before** you start. Remove it when the PR merges or you hand off. 
 
 | Task | Spec | Branch | Files / areas touched | Claimed | By |
 |---|---|---|---|---|---|
-| Plan phase 1 | `specs/01-ratings-reviews.md` | `docs/plan-phase-1` | `docs/` (status, specs 01 + 06, decisions, open questions, glossary, setup), `TOM.md` | 25 Nov 2026 | Claude (Tom's laptop session) |
 
 ## Next up
 
