@@ -10,7 +10,7 @@ Claim a row **before** you start. Remove it when the PR merges or you hand off. 
 
 | Task | Spec | Branch | Files / areas touched | Claimed | By |
 |---|---|---|---|---|---|
-| Update pass #2: `npm audit fix` | n/a | `chore/audit-fix` | `package-lock.json`, `docs/status.md`, `docs/handoff.md`, `TOM.md` | 25 Nov 2026 | Claude (Tom's laptop session) |
+| Plan phase 1 | `specs/01-ratings-reviews.md` | `docs/plan-phase-1` | `docs/` (status, specs 01 + 06, decisions, open questions, glossary, setup), `TOM.md` | 25 Nov 2026 | Claude (Tom's laptop session) |
 
 ## Next up
 
