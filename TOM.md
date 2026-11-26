@@ -2,13 +2,13 @@
 
 **For Tom.** This is the one page to read. Agents rewrite it at the end of every session, in plain English. The technical detail lives in `docs/`.
 
-**Last updated:** 25 Nov 2026, by Claude (security clean-up session)
+**Last updated:** 25 Nov 2026, by Claude (phase 1 planning session)
 
 ---
 
 ## In one line
 
-The emerald look, the install hook and the package updates are all in. The last clean-up (developer-tool security fixes) is in a pull request. After that, it's the TMDB token and Vercel, so the site can go live, and then phase 1.
+The update pass is finished, and phase 1 (ratings, reviews and the watch diary) is planned as 6 small tasks. Merge the plan, and `/start next` begins building it. The site goes live once you've done the TMDB token and Vercel.
 
 ## Start building from your phone
 
@@ -27,8 +27,8 @@ Most important first. Agents add to this list and never remove an item until it'
 | # | What | Why it matters | How |
 |---|---|---|---|
 | 0 | **Protect `main`** | So agents can't skip review. (The claude.ai setup-script step is no longer needed: the install hook is merged.) | GitHub → Pww2C → Settings → Branches → add a rule for `main`: require a pull request and passing checks. |
-| 1 | **Merge the security clean-up pull request** | Clears the last 7 known issues in the developer tools. | Review and merge it in the GitHub app. |
-| 2 | **Skim the phase plans** | They're now filled in from your prototype. Anything that's wrong is cheapest to fix now. | `docs/specs/01`–`06`; items marked *(prototype)*. Say if any prototype extras should wait (#11). |
+| 1 | **Check and merge the phase 1 plan** | Agents build phase 1 from it. Changing it now is cheap. | Read `docs/specs/01-ratings-reviews.md` in the pull request, especially *Already decided* and *Acceptance criteria*, then merge. |
+| 2 | **Skim the later phase plans** | They're filled in from your prototype. Anything that's wrong is cheapest to fix now. | `docs/specs/02`–`06`; items marked *(prototype)*. Say if any prototype extras should wait (#11). |
 | 3 | **Get a TMDB token** | The app can't load any films without it. | themoviedb.org → Settings → API → copy the long *API Read Access Token*. Put it straight into Vercel, never into a chat. |
 | 4 | **Set up Vercel** | This is what puts the site online. | Steps are in `docs/setup.md`. |
 
@@ -36,12 +36,20 @@ Most important first. Agents add to this list and never remove an item until it'
 
 These are copied from `docs/open-questions.md`, and only the ones that are blocking work appear here.
 
-- **Public or private by default** (#4): the prototype suggests collections private until shared, and reviews visible to the community. Confirm before phase 1–2.
+- Nothing is blocking right now. Two small ones have defaults agents will use unless you say otherwise: guests can rate but not write reviews (#13), and the emails get the emerald colours at launch (#12).
 - Coming up later: **whether PWW will ever make money**, because that changes which TMDB and Vercel terms apply. It's needed before launch (phase 7).
 
 ## What happened recently
 
 Newest first. Each session gets a few lines here, and the full detail goes in `docs/handoff.md`.
+
+**25 Nov 2026: Phase 1 planned**
+- Your answers are now in the plan:
+  - Each member picks who sees their ratings, reviews and diary: **Everyone** (the default, including people without an account) or **Private**.
+  - "People I follow" and "a few followers I pick" come with following, in phase 6.
+- Visitors can browse freely, but rating or reviewing asks them to sign up first. Every rating can have a one-line thought, and a full review is optional.
+- Phase 1 is split into 6 small tasks, and some can be built side by side. The database part comes first, as the rules require.
+- Also fixed the setup guide (it had the old repo name) and added the steps for protecting `main`. Nothing in the app changed.
 
 **25 Nov 2026: Developer-tool security issues cleared**
 - The emerald pull request (#6) is merged, so the new look and the install hook are both live in the code.
@@ -67,12 +75,6 @@ Newest first. Each session gets a few lines here, and the full detail goes in `d
 - The package updates you asked for with `/start next` didn't happen. This session finished the install script instead (you chose that), so they're still top of the list.
 - Nothing in the app changed.
 
-**18 Nov 2026 (evening): Agents ready to build**
-- Added the agent kit: type `/start next` from your phone and an agent picks the next task, builds it, has a second agent review it, updates the docs and opens a pull request.
-- Agents can run checks, commit and open pull requests without asking you each time. Installs and merges always ask, and pushing to the live code is blocked.
-- The first three tasks are queued: two package-update tasks, then filling in the design doc.
-- Woke the database and checked it: it matches the code exactly, and Supabase's security checker is clean. It pauses itself again after about a week with no visitors, until the app is live.
-
 ## Try it yourself
 
 Things worth clicking once the site is live. Agents list what's new and how to check it.
@@ -94,8 +96,8 @@ The full breakdown is in `docs/costs.md`. An agent must stop and ask you before 
 
 | Phase | Status |
 |---|---|
-| 0. Foundations | ✅ Built, tested and on GitHub · emerald look · update pass done once the security clean-up merges · ⏳ Vercel (needs you) |
-| 1. Ratings & reviews | Not started |
+| 0. Foundations | ✅ Built, tested, updated, emerald look · ⏳ Vercel (needs you) |
+| 1. Ratings & reviews | 📋 Planned: 6 tasks, waiting for you to merge the plan |
 | 2. Lists & watchlist | Not started |
 | 3. Onboarding & recommendations | Not started |
 | 4. Streaming advice | Not started |
@@ -108,16 +110,17 @@ The full breakdown is in `docs/costs.md`. An agent must stop and ask you before 
 What the 18 Nov check found. Agents work through this from the top; the technical detail is in `docs/status.md` → *Update pass*.
 
 1. ~~Small package updates~~ Done, merged 25 Nov (pull request #5).
-2. ~~Developer-tool security issues~~ Fixed 25 Nov: 0 known issues (pull request open).
+2. ~~Developer-tool security issues~~ Fixed 25 Nov: 0 known issues (pull request #7).
 3. **Two big upgrades to decide on later:** TypeScript 7 and ESLint 10. Both are major versions, so they wait until Next.js supports them.
-4. ~~Database check~~ Done 18 Nov: the live database matches the code and the security checker is clean. One small speed fix (a missing index) is queued for the next database change.
+4. ~~Database check~~ Done 18 Nov: the live database matches the code and the security checker is clean. One small speed fix (a missing index) goes in with the phase 1 database task.
 5. **Your changes.** The prototype is now in the plans; anything else you've changed goes to the top of this list.
 
 ## Red flags
 
 Anything an agent thinks you should worry about. If this section is empty, nothing is worrying.
 
-- You've said the code and the docs are both out of date. The phase plans now follow your prototype; the code hasn't caught up yet (update pass).
+- The site still isn't online: it needs the TMDB token and Vercel (*Needs you* 3 and 4). Agents can build phase 1 without them, but they can only check film pages against test data until then.
+- `main` isn't protected yet (*Needs you* 0), so nothing technically stops a change skipping review.
 
 ---
 

@@ -1,6 +1,6 @@
 # Phase 6: Social
 
-**Last updated:** 18 Nov 2026
+**Last updated:** 25 Nov 2026
 
 **Status:** Draft, filled in from the prototype; Tom to confirm  ·  **Owner:** Tom
 
@@ -24,6 +24,7 @@ Members find people whose taste they trust, follow them, and see what they've wa
 - [ ] **Report** on every review *(prototype; answers part of open question 5)*
 - [ ] Profile stats: titles watched, saved for later, collections, people followed *(prototype)*
 - [ ] Export your library *(prototype; open question 8 answered yes)*
+- [ ] Two more **visibility** levels for ratings, reviews and the diary (Tom, 25 Nov): *People I follow* and *A few followers I pick*. Phase 1 has only *Everyone* and *Private*. Add the values to `public.visibility` and extend `private.can_view()`, the single read rule (spec 01 → *Data changes*)
 
 ## Data changes
 *TODO:* follows, activity (or computed from ratings and lists?).

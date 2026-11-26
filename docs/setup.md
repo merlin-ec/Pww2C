@@ -1,16 +1,20 @@
 # Setting up accounts and settings
 
-**Last updated:** 3 Nov 2026
+**Last updated:** 25 Nov 2026
 
 The things only the owner can do, in order. Never paste secret keys into a chat, a commit or an issue: they go straight into the settings pages below.
 
 ## 1. GitHub
 
-Create an empty private repository called `pww` (no README, no licence) and give the Claude GitHub app access to it.
+Done: the repository is `merlin-ec/Pww2C` (public), and the Claude GitHub app has access.
+
+Still to do: protect `main`. Go to **Settings → Branches** (or **Rules → Rulesets**) and add a rule for `main`:
+- require a pull request before merging, with 0 approvals (you can't approve your own)
+- require these status checks: `Lint, types, unit tests and build`, `Database security rules`, `Docs match the change`
 
 ## 2. Vercel (hosting)
 
-1. At vercel.com, **Add New → Project** and import the `pww` repository. Keep the detected Next.js settings.
+1. At vercel.com, **Add New → Project** and import the `Pww2C` repository. Keep the detected Next.js settings.
 2. Before the first deploy, add these under **Settings → Environment Variables** (all environments):
 
    | Name | Value |

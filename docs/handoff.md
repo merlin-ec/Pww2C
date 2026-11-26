@@ -34,6 +34,46 @@ One entry per session, **newest first**. Agents write here at the end of every s
 
 ---
 
+## 2026-11-25: Phase 1 planned
+**Agent/session:** Claude Code session (Tom's laptop)  ·  **Branch/PR:** `docs/plan-phase-1` / see GitHub  ·  **Spec:** `specs/01-ratings-reviews.md`
+
+**Done**
+- `/plan-phase 1`. Tom answered the blocking questions in the session:
+  - #4 → a per-member visibility setting: *Everyone* (default, including visitors without an account) or *Private*. *People I follow* and *selected followers* come in phase 6.
+  - Visitors browse, and acting prompts sign-up.
+  - #5 → basics now, Report in phase 6.
+  - Short thought (280) and review (5,000) are both kept.
+- Spec 01:
+  - status *Planned*
+  - *Already decided* holds the answers
+  - acceptance criteria extended (visibility, visitors, enforcement), each tagged with its task number
+  - *Data changes* filled in, with one read rule `private.can_view()` that phase 6 extends
+- `status.md` → *Next up*: 6 tasks (schema → server logic → UI, with 1∥2 and 4∥5). Phase 1 → Planned. Update pass #7 (provider index) folded into task 1. Removed the merged audit-fix row.
+- `decisions.md` → new *Phase 1* section (6 entries). `open-questions.md`: #4 and #5 answered, new #13 (guest reviews; default no). `glossary.md`: short thought, logged watch, watch diary, visibility; review redefined. Spec 06: the two later visibility levels.
+- `setup.md`: repo name fixed (`Pww2C`, public), and the steps for protecting `main` added (the three CI check names).
+
+**Changed files / migrations**
+- Docs only: `docs/specs/01`, `docs/specs/06`, `docs/status.md`, `docs/decisions.md`, `docs/open-questions.md`, `docs/glossary.md`, `docs/setup.md`, `docs/handoff.md`, `TOM.md`.
+
+**Decisions made** (also added to decisions.md)
+- The visibility model and default; thought vs review; ratings stored as 1–10; moderation basics; guests can't review (default).
+
+**Not done / skipped, and why**
+- Lists' visibility (also in #4) is left for the phase 2 plan.
+- No code.
+
+**Risks or things that look wrong**
+- Rating needs a `titles` row first. Catalogue writes are server-only (admin client), so task 3 must fetch TMDB data on the server and never trust the form for it.
+- Task 4 can be built without a TMDB token only against the test TMDB server (`TMDB_API_BASE_URL`).
+
+**Tom should check**
+- Spec 01 → *Already decided* and *Acceptance criteria*.
+
+**Next step**
+- After this merges: `/start next` takes task 1 (schema, via `db-migrator`). Task 2 can run alongside it in a second session.
+
+---
+
 ## 2026-11-25: Update pass #2, `npm audit fix`
 **Agent/session:** Claude Code session (Tom's laptop)  ·  **Branch/PR:** `chore/audit-fix` / see GitHub  ·  **Spec:** n/a
 
