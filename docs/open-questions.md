@@ -12,10 +12,10 @@ Decisions only Tom can make. Agents add questions here instead of guessing, then
 | 2 | Domain name? | Needed for real email and the launch URL | Phase 7 | 17 Nov 2026 |
 | 3 | Social login (Google / Apple) as well as email? | Easier sign-up; more auth settings to manage | Phase 7 (or earlier) | 17 Nov 2026 |
 | 7 | Analytics: none, privacy-friendly (e.g. Vercel Analytics), or full? | Privacy policy, cost | Phase 7 | 17 Nov 2026 |
-| 9 | Tom says the Foundations code and these docs are both out of date. What else has changed in his thinking (features, stack, design, decisions)? *Partly answered 18 Nov: the prototype (`product.md` → Prototype).* | Agents can find technical gaps, but not changes in Tom's plans | The update pass before phase 1 | 17 Nov 2026 |
+| 9 | Tom says the Foundations code and these docs are both out of date. What else has changed in his thinking (features, stack, design, decisions)? *Partly answered 18 Nov: the prototype (`product.md` → Prototype).* | Agents can find technical gaps, but not changes in Tom's plans | Nothing now (update pass done 25 Nov); still welcome before each phase | 17 Nov 2026 |
 | 11 | The prototype adds features the plan didn't have: the *Evening Edit* home feature, streaming rotation, taste-match, watch diary, trailer link, similar titles, profile stats. They're in the specs now. Keep all in v1, or cut some? | Scope and build time | Nothing yet (default: keep) | 18 Nov 2026 |
 | 12 | Should the confirmation and password-reset emails switch to the emerald colours? They still use the old velvet red for button text. Changing email is on the ask-Tom list | Small visual mismatch between site and emails | Nothing (default: change it with phase 7 email setup) | 25 Nov 2026 |
-| 13 | Can guests (anonymous accounts from watch sessions) write reviews? | Reviews appear on profiles, and guests have no username or profile page | Nothing (default: no; guests can rate and log watches) | 25 Nov 2026 |
+| 13 | Once watch sessions exist, should guests (anonymous accounts) be able to rate, log watches or review? Today guests are limited to their watch session | Group picks might want guests' ratings; reviews need a profile page | Phase 5 (default: no, as in phase 1) | 25 Nov 2026 |
 
 ## Answered
 

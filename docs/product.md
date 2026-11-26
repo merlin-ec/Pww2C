@@ -1,6 +1,6 @@
 # Product
 
-**Last updated:** 18 Nov 2026
+**Last updated:** 25 Nov 2026
 
 ## What PWW is
 
@@ -57,7 +57,9 @@ These are already locked. They're in `decisions.md`.
 
 - Films **and** TV are supported. TV is rated at the **show** level, with no episode tracking in v1.
 - Streaming availability covers **US, CA, GB, AU, NZ, IE**. It defaults to the profile country, then the country Vercel detects, then US.
-- **Profiles are public.** Usernames are lowercase, 3–20 characters, with a short reserved list.
+- **Profiles are public by default; members choose who sees their ratings, reviews and diary** (*Everyone* or *Private* from phase 1; *People I follow* and *selected followers* in phase 6). Usernames are lowercase, 3–20 characters, with a short reserved list.
+- **Visitors can browse; acting (rating, logging, reviewing) needs an account.**
+- **A rating can carry a one-line thought; a longer review is optional.** Each watch can be logged in a diary.
 - Guests join watch sessions as anonymous users, and keep everything if they sign up.
 
 ## Non-goals for v1

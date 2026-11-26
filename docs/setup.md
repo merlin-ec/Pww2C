@@ -10,7 +10,7 @@ Done: the repository is `merlin-ec/Pww2C` (public), and the Claude GitHub app ha
 
 Still to do: protect `main`. Go to **Settings → Branches** (or **Rules → Rulesets**) and add a rule for `main`:
 - require a pull request before merging, with 0 approvals (you can't approve your own)
-- require these status checks: `Lint, types, unit tests and build`, `Database security rules`, `Docs match the change`
+- require these status checks: `Lint, types, unit tests and build`, `Database security rules`, `docs-check`
 
 ## 2. Vercel (hosting)
 

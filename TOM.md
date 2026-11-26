@@ -26,7 +26,7 @@ Most important first. Agents add to this list and never remove an item until it'
 
 | # | What | Why it matters | How |
 |---|---|---|---|
-| 0 | **Protect `main`** | So agents can't skip review. (The claude.ai setup-script step is no longer needed: the install hook is merged.) | GitHub → Pww2C → Settings → Branches → add a rule for `main`: require a pull request and passing checks. |
+| 0 | **Protect `main`** | So agents can't skip review. (The claude.ai setup-script step is no longer needed: the install hook is merged.) | GitHub → Pww2C → Settings → Branches → add a rule for `main`: require a pull request and the three checks listed in `docs/setup.md` → *GitHub*. |
 | 1 | **Check and merge the phase 1 plan** | Agents build phase 1 from it. Changing it now is cheap. | Read `docs/specs/01-ratings-reviews.md` in the pull request, especially *Already decided* and *Acceptance criteria*, then merge. |
 | 2 | **Skim the later phase plans** | They're filled in from your prototype. Anything that's wrong is cheapest to fix now. | `docs/specs/02`–`06`; items marked *(prototype)*. Say if any prototype extras should wait (#11). |
 | 3 | **Get a TMDB token** | The app can't load any films without it. | themoviedb.org → Settings → API → copy the long *API Read Access Token*. Put it straight into Vercel, never into a chat. |
@@ -36,7 +36,7 @@ Most important first. Agents add to this list and never remove an item until it'
 
 These are copied from `docs/open-questions.md`, and only the ones that are blocking work appear here.
 
-- Nothing is blocking right now. Two small ones have defaults agents will use unless you say otherwise: guests can rate but not write reviews (#13), and the emails get the emerald colours at launch (#12).
+- Nothing is blocking right now. Two small ones have defaults agents will use unless you say otherwise: guests (people joining a watch session without an account) can't rate or review until phase 5 decides (#13), and the emails get the emerald colours at launch (#12).
 - Coming up later: **whether PWW will ever make money**, because that changes which TMDB and Vercel terms apply. It's needed before launch (phase 7).
 
 ## What happened recently
@@ -44,12 +44,10 @@ These are copied from `docs/open-questions.md`, and only the ones that are block
 Newest first. Each session gets a few lines here, and the full detail goes in `docs/handoff.md`.
 
 **25 Nov 2026: Phase 1 planned**
-- Your answers are now in the plan:
-  - Each member picks who sees their ratings, reviews and diary: **Everyone** (the default, including people without an account) or **Private**.
-  - "People I follow" and "a few followers I pick" come with following, in phase 6.
-- Visitors can browse freely, but rating or reviewing asks them to sign up first. Every rating can have a one-line thought, and a full review is optional.
-- Phase 1 is split into 6 small tasks, and some can be built side by side. The database part comes first, as the rules require.
-- Also fixed the setup guide (it had the old repo name) and added the steps for protecting `main`. Nothing in the app changed.
+- Your answers are in the plan: each member picks who sees their ratings, reviews and diary. **Everyone** is the default and includes people without an account; **Private** is the other option, and "people I follow" and "a few followers I pick" arrive with following in phase 6.
+- Visitors can browse freely, but rating or reviewing asks them to sign up. Every rating can have a one-line thought, a full review is optional, and each rewatch can be logged in a diary with what you thought that time.
+- Phase 1 is 7 small tasks, the database first. A second agent's review caught five problems in my first draft (the review limit could be dodged by editing, visitors would have been locked out of reading, and three more), all fixed before you see it.
+- I also fixed the setup guide: the old repo name, the exact checks to tick when protecting `main`. Nothing in the app changed.
 
 **25 Nov 2026: Developer-tool security issues cleared**
 - The emerald pull request (#6) is merged, so the new look and the install hook are both live in the code.
@@ -97,7 +95,7 @@ The full breakdown is in `docs/costs.md`. An agent must stop and ask you before 
 | Phase | Status |
 |---|---|
 | 0. Foundations | ✅ Built, tested, updated, emerald look · ⏳ Vercel (needs you) |
-| 1. Ratings & reviews | 📋 Planned: 6 tasks, waiting for you to merge the plan |
+| 1. Ratings & reviews | 📋 Planned: 7 tasks, waiting for you to merge the plan |
 | 2. Lists & watchlist | Not started |
 | 3. Onboarding & recommendations | Not started |
 | 4. Streaming advice | Not started |

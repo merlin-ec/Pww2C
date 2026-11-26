@@ -30,7 +30,7 @@ Members find people whose taste they trust, follow them, and see what they've wa
 *TODO:* follows, activity (or computed from ratings and lists?).
 
 ## Security and abuse
-Block and report (open question 5); feed respects private settings (open question 4); rate limits on follows.
+Block and report (Report answers open question 5); the feed and taste-match respect each member's visibility (answered 25 Nov; spec 01), and *Private* ratings never count towards anyone else's taste-match; rate limits on follows.
 
 ## Out of scope
 Direct messages.

@@ -1,6 +1,6 @@
 # Auth
 
-**Last updated:** 17 Nov 2026
+**Last updated:** 25 Nov 2026
 
 Supabase Auth handles identity. Our code decides what each person can do, and RLS enforces it in the database.
 
@@ -8,7 +8,7 @@ Supabase Auth handles identity. Our code decides what each person can do, and RL
 
 | Kind | How they get in | Can |
 |---|---|---|
-| Signed-out visitor | Nothing | Browse titles, search, see public profiles and share pages |
+| Signed-out visitor | Nothing | Browse titles, search, see profiles, ratings, reviews and diaries set to *Everyone*, and share pages. Rating, logging or reviewing sends them to sign up or log in (phase 1) |
 | Member | Email + password (min 8 chars), confirmed by email | Everything in their account |
 | Anonymous guest (phase 5) | Joins a watch session via link → Supabase anonymous sign-in | Only that watch session |
 | Guest → member | Signs up from a guest session | Keeps everything: the user id never changes |

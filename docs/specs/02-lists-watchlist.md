@@ -1,6 +1,6 @@
 # Phase 2: Lists & watchlist
 
-**Last updated:** 18 Nov 2026
+**Last updated:** 25 Nov 2026
 
 **Status:** Draft, filled in from the prototype; Tom to confirm  ·  **Owner:** Tom
 
@@ -36,4 +36,4 @@ Share pages expose only that list; list names render as plain text; limits on li
 Collaborative lists (maybe phase 5 or 6); importing from Letterboxd or IMDb (*TODO: in or out?*).
 
 ## Open questions
-#4 (public vs private).
+#4 was answered on 25 Nov for ratings, reviews and the diary (a per-member *visibility*, default *Everyone*; spec 01). How that applies to lists is decided when this phase is planned. The prototype has collections private until shared.

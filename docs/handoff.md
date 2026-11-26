@@ -48,15 +48,30 @@ One entry per session, **newest first**. Agents write here at the end of every s
   - *Already decided* holds the answers
   - acceptance criteria extended (visibility, visitors, enforcement), each tagged with its task number
   - *Data changes* filled in, with one read rule `private.can_view()` that phase 6 extends
-- `status.md` → *Next up*: 6 tasks (schema → server logic → UI, with 1∥2 and 4∥5). Phase 1 → Planned. Update pass #7 (provider index) folded into task 1. Removed the merged audit-fix row.
+- `status.md` → *Next up*: 7 tasks (1∥2 → 3 → 4a → 4b, with 5 alongside 4a/4b → 6). Phase 1 → Planned. Update pass #7 (provider index) folded into task 1. Removed the merged audit-fix row.
 - `decisions.md` → new *Phase 1* section (6 entries). `open-questions.md`: #4 and #5 answered, new #13 (guest reviews; default no). `glossary.md`: short thought, logged watch, watch diary, visibility; review redefined. Spec 06: the two later visibility levels.
-- `setup.md`: repo name fixed (`Pww2C`, public), and the steps for protecting `main` added (the three CI check names).
+- `setup.md`: repo name fixed (`Pww2C`, public), and the steps for protecting `main` added (the three CI check names; the docs job reports as `docs-check`).
+- The `reviewer` agent found 5 must-fixes in the first draft, all fixed:
+  - The review rate limit couldn't count edits. It now uses a `private.review_writes` event table.
+  - RLS calling `private.can_view()` would fail without `usage` on the `private` schema. The grants are now spelled out.
+  - "Guests can rate" contradicted `auth.md` and `security.md`. Guests now can't write in phase 1, and #13 moves to phase 5.
+  - FKs and cascades were unspecified. Now `user_id` → `profiles` cascades, and `title_id` restricts.
+  - Wrong check name in `setup.md`.
+- Should-fixes also taken:
+  - Task 4 split into 4a and 4b.
+  - A shared `Stars` component and the half-star helper live in task 3.
+  - How-it-works and changelog sit in each UI task.
+  - The rating ↔ diary relationship is defined.
+  - The diary date check allows UTC + 1 day.
+  - `title_id` indexes added.
+  - Username needed for reviews.
+  - Stale #4 references fixed in `product.md`, specs 02 and 06, `security.md` and `auth.md`.
 
 **Changed files / migrations**
-- Docs only: `docs/specs/01`, `docs/specs/06`, `docs/status.md`, `docs/decisions.md`, `docs/open-questions.md`, `docs/glossary.md`, `docs/setup.md`, `docs/handoff.md`, `TOM.md`.
+- Docs only: `docs/specs/01`, `02`, `06`, `docs/status.md`, `docs/decisions.md`, `docs/open-questions.md`, `docs/glossary.md`, `docs/setup.md`, `docs/product.md`, `docs/security.md`, `docs/auth.md`, `docs/handoff.md`, `TOM.md`.
 
 **Decisions made** (also added to decisions.md)
-- The visibility model and default; thought vs review; ratings stored as 1–10; moderation basics; guests can't review (default).
+- The visibility model and default; thought vs review; the rating ↔ diary relationship; ratings stored as 1–10; member data restricts catalogue deletes; moderation basics; no guest writes in phase 1; reviews need a username.
 
 **Not done / skipped, and why**
 - Lists' visibility (also in #4) is left for the phase 2 plan.
@@ -64,7 +79,8 @@ One entry per session, **newest first**. Agents write here at the end of every s
 
 **Risks or things that look wrong**
 - Rating needs a `titles` row first. Catalogue writes are server-only (admin client), so task 3 must fetch TMDB data on the server and never trust the form for it.
-- Task 4 can be built without a TMDB token only against the test TMDB server (`TMDB_API_BASE_URL`).
+- Tasks 4a, 4b and 5 can be built without a TMDB token only against the test TMDB server (`TMDB_API_BASE_URL`).
+- 4a/4b and 5 each add to `CHANGELOG.md` and `docs/how-it-works/`. When they run in parallel, expect small merges there.
 
 **Tom should check**
 - Spec 01 → *Already decided* and *Acceptance criteria*.

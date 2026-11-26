@@ -1,6 +1,6 @@
 # Security
 
-**Last updated:** 24 Nov 2026
+**Last updated:** 25 Nov 2026
 
 What we protect, from whom, and the rules that do it. Every agent follows this. If a rule here conflicts with getting a feature done, the rule wins; raise it in `open-questions.md`.
 
@@ -42,9 +42,9 @@ What we protect, from whom, and the rules that do it. Every agent follows this. 
 |---|---|---|
 | Sign-up spam / bot accounts | Supabase Auth rate limits; email confirmation | Built-in |
 | Anonymous-guest abuse (phase 5) | Guests are scoped to one watch session; rate-limit guest creation | TODO in spec 05 |
-| Spam reviews/lists (phase 1–2, 6) | Per-user rate limits; report button | TODO in specs |
+| Spam reviews/lists (phase 1–2, 6) | Reviews: 20 writes per member per day and length caps, enforced by the database; Report button in phase 6. Lists: spec 02 | Specified in spec 01 (phase 1) |
 | Claude bill run-up (phase 3) | Hard monthly cap ($10); per-user daily limit; engine-only fallback | TODO in `recommendations.md` |
-| Scraping public profiles | Accept for v1 (profiles are public by decision) | Accepted |
+| Scraping public profiles | Accept for v1: *Everyone* is the default visibility, and members who mind can choose *Private* (spec 01) | Accepted |
 
 ## AI safety (phase 3+)
 

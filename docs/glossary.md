@@ -12,8 +12,8 @@ Use these exact words in code, UI and docs. If you need a new term, add it here 
 | **Member** | A signed-up user | "customer" |
 | **Guest** | An anonymous user inside a watch session | "visitor" (that's someone signed out) |
 | **Visitor** | Someone browsing while signed out | |
-| **Profile** | A member's public page and settings | "account" (that's auth) |
-| **Rating** | A member's score for a title. TV is rated per show | "review" (that's the text) |
+| **Profile** | A member's page (`/u/<username>`) and settings. What others see on it depends on the member's visibility | "account" (that's auth) |
+| **Rating** | A member's current score for a title, half a star to five stars (stored 1–10). One per title. TV is rated per show | "review" (that's the text) |
 | **Review** | An optional longer write-up (up to 5,000 characters), one per member per title | "thought" (that's the one-liner) |
 | **Short thought** | One line (up to 280 characters) with a rating or a logged watch *(prototype)* | "comment", "note" |
 | **Logged watch** | One diary entry: a title, the date watched, and optionally a rating and thought. A title can be logged many times | "view", "play" |
